@@ -7,12 +7,13 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
+import PlantList from './PlantList.js'
 var Datastore = require('react-native-local-mongodb')
   , db = new Datastore();
 
-export default class App extends Component<Props> {
+class App extends Component<Props> {
   constructor(props){
     super(props);
     this.state = {
@@ -21,31 +22,44 @@ export default class App extends Component<Props> {
     };
   }
   async componentDidMount(){
-    let alldata = await db.insertAsync(plant_data);
+    //let alldata = await db.insertAsync(plant_data);
     let results = await db.findAsync(this.state.searchQueryObject); 
     this.setState({searchResults: results});
-    console.log(results.length);
+    console.log(this.props.plants.length);
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{(db.adapter)}</Text>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-        <FlatList
-  data={this.state.searchResults}
-  renderItem={({item}) => <Text key={item.jepson_code}>{item.jepson_code}</Text>}
-/>
-
-        </ScrollView>
-
+      <View style={{flex:1}}>
+<Text style={styles.welcome}>THIS IS A HEADERRR</Text>
+      </View>
+      <View style={{flex:4}}>
+ <PlantList searchResults={this.state.searchResults}/>
+      </View>
+       
       </View>
     );
   }
 }
 
+class DataBaseProvider extends Component<Props> {
+  constructor(props){
+    super(props);
+    this.state ={ plants: [] };
+  }
+  async componentDidMount(){
+    let alldata = await db.insertAsync(plant_data);
+    this.setState({plants: alldata});
+    console.log(this.state.plants.length)
+  }
+  render(){
+    return (this.state.plants.length ? <App plants={this.state.plants} /> : null);
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -63,5 +77,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: 20
   }
-
+  
 });
+export default DataBaseProvider;
