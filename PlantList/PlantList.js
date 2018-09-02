@@ -1,30 +1,38 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, FlatList, RefreshControl} from 'react-native';
-import PlantListHeader from './PlantListHeader.js'
 import PlantListItem from './PlantListItem.js'
-
+import PlantListHeader from './PlantListHeader.js'
 class PlantList extends Component<Props> {
     constructor(props){
         super(props);
-        //sorting will be stored in this state
-     //   let fullList =this.props.searchResults;
-      //  let limit
-      //  if (fullList.length >= 15)
-      //  let initialList = fullList.length >= 15 ? 
-        //                fullList.slice(0, 15)
-          //              :   
-
         this.state = {
             renderedList:[] , 
             offset: 0,
             refreshing: false,
-            sortBy: "",
-            ascending: false
+            sortAttr: "jepson_code",
+            direction: 0
         };
         console.log(this.props.searchResults.length);
-
     }
+    _sortList = () => {
+        if (this.state.direction == 1) {
+            this.setState({...this.state, 
+                renderedList: this.state.renderedList.sort(function(a, b){
+                    return a.jepson_code - b.jepson_code})})
+        }
+        if (this.state.direction == -1) {
+            this.setState({...this.state, 
+                renderedList: this.state.renderedList.sort(function(a, b){
+                    return b.jepson_code - a.jepson_code})})
+        }    
+    }
+    _handleSortChange = (sortAttr, direction) => {
+        console.log("handle sort change in PlantList component " + direction)
+        this.setState({...this.state, sortAttr: sortAttr, direction: direction}, ()=>{
+            this._sortList();
+        });
+      }     
     _updateList = () => {
         let { offset, renderedList } = this.state;
         let fullList = this.props.searchResults;
@@ -38,6 +46,7 @@ class PlantList extends Component<Props> {
                     renderedList: renderedList.concat(newItems),
                     offset: limit
                 }, () =>{
+                    this._sortList()
                     resolve() 
                 })
             });
@@ -48,6 +57,7 @@ class PlantList extends Component<Props> {
                     renderedList: fullList,
                 offset: fullList.length
                 }, () =>{
+                    this._sortList()
                     resolve() 
                 })
             });
@@ -74,11 +84,16 @@ class PlantList extends Component<Props> {
         }
        );
     }
-    
+
     render(){
+       
 return(
     <View>
-    <PlantListHeader/>
+    <PlantListHeader
+    direction={this.state.direction}
+ sortAttr={this.state.sortAttr}
+ onSortChange={this._handleSortChange}
+ />
         <FlatList
         ref={flatList => this.flatList = flatList}
         inverted

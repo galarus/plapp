@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
+
 import PlantList from './PlantList/PlantList.js'
 var Datastore = require('react-native-local-mongodb')
   , db = new Datastore();
@@ -17,14 +18,18 @@ class App extends Component<Props> {
   constructor(props){
     super(props);
     this.state = {
-      searchQueryObject: {},
+      findQuery: {},
       searchResults: []
     };
   }
+  _handleFindChange = (findQuery) => {
+    this.setState({...this.state, findQuery: findQuery});
+  }
   async componentDidMount(){
-    //let alldata = await db.insertAsync(plant_data);
-    let results = await db.findAsync(this.state.searchQueryObject); 
-    this.setState({searchResults: results});
+   
+    let results = await db.findAsync(this.state.findQuery);
+          //  .sort(this.state.sortObj) ; 
+    this.setState({...this.state, searchResults: results});
     //console.log(this.props.plants.length);
   }
   render() {
@@ -34,7 +39,11 @@ class App extends Component<Props> {
 <Text style={styles.welcome}>THIS IS A HEADERRR</Text>
       </View>
       <View style={{flex:4, margin:18}}>
- {this.state.searchResults.length ?<PlantList searchResults={this.state.searchResults}/>:
+ 
+ 
+ {this.state.searchResults.length ?
+ <PlantList 
+ searchResults={this.state.searchResults}/>:
  <Text>There are no plants matching your given search criteria.</Text>}
       </View>
        

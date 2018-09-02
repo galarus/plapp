@@ -5,15 +5,12 @@ import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
 class PlantListHeader extends Component<Props>{
     constructor(props){
         super(props);
-        this.state = {
-            sort: ""
-        };
-       // console.log(this.props.item)
     }
     _toggleSort = () => {
-        (this.state.sort == "" || this.state.sort == "desc") ?
-        this.setState({sort: "asc"}) :
-        this.setState({sort: "desc"});
+        console.log("")
+        let newDirection = (this.props.direction == 0 || this.props.direction == -1) ? 1: -1;
+        console.log("calling toggle sort from " + this.props.direction + " to " + newDirection);
+        this.props.onSortChange("jepson_code", newDirection);
     }
     render(){
         
@@ -22,8 +19,8 @@ class PlantListHeader extends Component<Props>{
            <View
            style={{padding:20}}>
 <Text>JEPSON CODE 
-{ this.state.sort=="asc" ? <Text> &#8593;</Text>:null } 
-{ this.state.sort=="desc" ? <Text> &#8595;</Text>:null } 
+{ this.props.direction==1 ? <Text> &#8593;</Text>:null } 
+{ this.props.direction==-1 ? <Text> &#8595;</Text>:null } 
 </Text>
 
 </View>
