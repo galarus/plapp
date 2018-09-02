@@ -15,9 +15,13 @@ class PlantListHeader extends Component<Props>{
     render(){
         
        return (
-           <TouchableHighlight onPress={this._toggleSort}>
+           <TouchableHighlight 
+           onPress={this._toggleSort}
+           style={{borderWidth:1,
+       borderColor:'rgba(0,0,0,0.4)'
+       }}>
            <View
-           style={{padding:20}}>
+           style={{padding:15}}>
 <Text>JEPSON CODE 
 { this.props.direction==1 ? <Text> &#8593;</Text>:null } 
 { this.props.direction==-1 ? <Text> &#8595;</Text>:null } 

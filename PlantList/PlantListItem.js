@@ -9,11 +9,13 @@ class PlantListItem extends Component<Props>{
        // console.log(this.props.item)
     }
     render(){
+        let item = this.props.item;
        return (
            <View
            style={{height:30}}>
-<Text>{this.props.item.jepson_code}</Text>
+<Text>{item.jepson_code} {item.plant_genus} {item.plant_species}</Text>
 </View>
+
         )
     }
 }

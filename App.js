@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
-
+import PlantHeader from './PlantHeader/PlantHeader.js'
 import PlantList from './PlantList/PlantList.js'
 var Datastore = require('react-native-local-mongodb')
   , db = new Datastore();
@@ -35,9 +35,7 @@ class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-      <View style={{flex:1}}>
-<Text style={styles.welcome}>THIS IS A HEADERRR</Text>
-      </View>
+     <PlantHeader />
       <View style={{flex:4, margin:18}}>
  
  
