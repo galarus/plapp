@@ -25,7 +25,7 @@ class App extends Component<Props> {
     //let alldata = await db.insertAsync(plant_data);
     let results = await db.findAsync(this.state.searchQueryObject); 
     this.setState({searchResults: results});
-    console.log(this.props.plants.length);
+    //console.log(this.props.plants.length);
   }
   render() {
     return (
@@ -33,8 +33,9 @@ class App extends Component<Props> {
       <View style={{flex:1}}>
 <Text style={styles.welcome}>THIS IS A HEADERRR</Text>
       </View>
-      <View style={{flex:4}}>
- <PlantList searchResults={this.state.searchResults}/>
+      <View style={{flex:4, margin:18}}>
+ {this.state.searchResults.length ?<PlantList searchResults={this.state.searchResults}/>:
+ <Text>There are no plants matching your given search criteria.</Text>}
       </View>
        
       </View>
@@ -50,7 +51,7 @@ class DataBaseProvider extends Component<Props> {
   async componentDidMount(){
     let alldata = await db.insertAsync(plant_data);
     this.setState({plants: alldata});
-    console.log(this.state.plants.length)
+    //console.log(this.state.plants.length)
   }
   render(){
     return (this.state.plants.length ? <App plants={this.state.plants} /> : null);
