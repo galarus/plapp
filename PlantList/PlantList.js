@@ -1,36 +1,9 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, FlatList, RefreshControl} from 'react-native';
-class PlantListHeader extends Component<Props>{
-    constructor(props){
-        super(props);
-        this.state = {};
-       // console.log(this.props.item)
-    }
-    render(){
-       return (
-           <View
-           style={{padding:20}}>
-<Text>JEPSON CODE</Text>
-</View>
-        )
-    }
-}
-class PlantListItem extends Component<Props>{
-    constructor(props){
-        super(props);
-        this.state = {};
-       // console.log(this.props.item)
-    }
-    render(){
-       return (
-           <View
-           style={{height:30}}>
-<Text>{this.props.item.jepson_code}</Text>
-</View>
-        )
-    }
-}
+import PlantListHeader from './PlantListHeader.js'
+import PlantListItem from './PlantListItem.js'
+
 class PlantList extends Component<Props> {
     constructor(props){
         super(props);

@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
-import PlantList from './PlantList.js'
+import PlantList from './PlantList/PlantList.js'
 var Datastore = require('react-native-local-mongodb')
   , db = new Datastore();
 
