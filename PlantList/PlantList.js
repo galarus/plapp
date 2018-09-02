@@ -18,7 +18,9 @@ class PlantList extends Component<Props> {
         this.state = {
             renderedList:[] , 
             offset: 0,
-            refreshing: false
+            refreshing: false,
+            sortBy: "",
+            ascending: false
         };
         console.log(this.props.searchResults.length);
 
