@@ -40,9 +40,9 @@ class App extends Component<Props> {
  
  
  {this.state.searchResults.length ?
- <PlantList 
- searchResults={this.state.searchResults}/>:
- <Text>There are no plants matching your given search criteria.</Text>}
+ <PlantList searchResults={this.state.searchResults}/> :
+ <Text>There are no plants matching your given search criteria.</Text>
+ }
       </View>
        
       </View>
@@ -72,19 +72,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  contentContainer: {
-    paddingVertical: 20
-  }
-  
 });
 export default DataBaseProvider;

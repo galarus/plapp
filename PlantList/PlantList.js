@@ -16,19 +16,28 @@ class PlantList extends Component<Props> {
         console.log(this.props.searchResults.length);
     }
     _sortList = () => {
+        let sortAttr = this.state.sortAttr;
         if (this.state.direction == 1) {
             this.setState({...this.state, 
-                renderedList: this.state.renderedList.sort(function(a, b){
-                    return a.jepson_code - b.jepson_code})})
+                renderedList: this.state.renderedList.sort((a, b)=>{
+                    return  (sortAttr == "jepson_code" ?
+                    a[sortAttr] - b[sortAttr] : 
+                    ('' + a[sortAttr]).localeCompare(b[sortAttr])
+                )
+                })})
         }
         if (this.state.direction == -1) {
             this.setState({...this.state, 
-                renderedList: this.state.renderedList.sort(function(a, b){
-                    return b.jepson_code - a.jepson_code})})
+                renderedList: this.state.renderedList.sort((a, b)=>{
+                    return (sortAttr == "jepson_code" ?
+                    b[sortAttr] - a[sortAttr] :
+                    ('' + b[sortAttr]).localeCompare(a[sortAttr])
+                )
+                })})
         }    
     }
     _handleSortChange = (sortAttr, direction) => {
-        console.log("handle sort change in PlantList component " + direction)
+        console.log("handle sort change in PlantList component " +sortAttr + " "+ direction)
         this.setState({...this.state, sortAttr: sortAttr, direction: direction}, ()=>{
             this._sortList();
         });

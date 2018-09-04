@@ -9,6 +9,7 @@ class PlantHeader extends Component<Props>{
     }
     render(){
         let item = this.props.item;
+        
        return (
         <View style={{flex:1}}>
         <View style={{flex: 1,
@@ -20,6 +21,7 @@ class PlantHeader extends Component<Props>{
     textAlign: 'center',
     margin: 10,
   }}>PLAPP</Text>
+
         <TouchableOpacity
         onPress={()=>{alert("about")}}
         style={{
