@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
-
+import {StyleSheet, Text, View} from 'react-native';
+import AboutModal from './AboutModal.js'
+import PlantSearch from './PlantSearch.js'
 class PlantHeader extends Component<Props>{
     constructor(props){
         super(props);
-        this.state = {};
-       // console.log(this.props.item)
+        console.log(this.props.findQuery.jepson_min)
     }
-    render(){
-        let item = this.props.item;
-        
+    render(){        
        return (
         <View style={{flex:1}}>
         <View style={{flex: 1,
@@ -22,25 +20,9 @@ class PlantHeader extends Component<Props>{
     margin: 10,
   }}>PLAPP</Text>
 
-        <TouchableOpacity
-        onPress={()=>{alert("about")}}
-        style={{
-         borderWidth:1,
-         borderColor:'rgba(0,0,0,0.2)',
-         alignItems:'center',
-         justifyContent:'center',
-         width:50,
-         height:40,
-         backgroundColor:'#f0ffff',
-         borderRadius:40,
-        }}
-        ><Text>About</Text></TouchableOpacity>
+      <AboutModal/>
         </View>
-        <Button
-        onPress={()=>{alert("search")}}
-        title="Search"
-        accessibilityLabel="narrow the list of plants"
-        />
+        <PlantSearch {...this.props}/>
         </View>
 
         )

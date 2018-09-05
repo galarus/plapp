@@ -11,57 +11,52 @@ import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
 import PlantHeader from './PlantHeader/PlantHeader.js'
 import PlantList from './PlantList/PlantList.js'
-var Datastore = require('react-native-local-mongodb')
-  , db = new Datastore();
 
 class App extends Component<Props> {
   constructor(props){
     super(props);
     this.state = {
-      findQuery: {},
+      plants: plant_data,
+      findQuery: {
+        jepson_min: "",
+        jepson_max: ""
+      },
       searchResults: []
     };
   }
+
   _handleFindChange = (findQuery) => {
-    this.setState({...this.state, findQuery: findQuery});
-  }
-  async componentDidMount(){
-   
-    let results = await db.findAsync(this.state.findQuery);
-          //  .sort(this.state.sortObj) ; 
-    this.setState({...this.state, searchResults: results});
-    //console.log(this.props.plants.length);
+    //code to filter results from plants into search results
+    let min = Number(findQuery.jepson_min);
+    let max = isNaN(parseInt(findQuery.jepson_max, 10))? Number.MAX_SAFE_INTEGER: Number(findQuery.jepson_max)
+    console.log("max "+max);
+    let results = this.state.plants.filter((plant)=> {
+      return plant.jepson_code >= min &&
+            plant.jepson_code <= max;
+    });
+
+    //first filter jepson code range min then max
+    console.log("handle find change from app component"+findQuery)
+    this.setState({...this.state, findQuery: findQuery, searchResults: results});
   }
   render() {
+    console.log("rendering app "+this.state.searchResults.length);
     return (
       <View style={styles.container}>
-     <PlantHeader />
+     <PlantHeader plants={this.state.plants} findQuery={this.state.findQuery} onFindChange={this._handleFindChange}/>
       <View style={{flex:4, margin:18}}>
  
  
  {this.state.searchResults.length ?
- <PlantList searchResults={this.state.searchResults}/> :
+ <PlantList searchResults={this.state.searchResults}
+  key={this.state.searchResults.length}
+ /> :
  <Text>There are no plants matching your given search criteria.</Text>
  }
       </View>
        
       </View>
     );
-  }
-}
-
-class DataBaseProvider extends Component<Props> {
-  constructor(props){
-    super(props);
-    this.state ={ plants: [] };
-  }
-  async componentDidMount(){
-    let alldata = await db.insertAsync(plant_data);
-    this.setState({plants: alldata});
-    //console.log(this.state.plants.length)
-  }
-  render(){
-    return (this.state.plants.length ? <App plants={this.state.plants} /> : null);
   }
 }
 const styles = StyleSheet.create({
@@ -73,4 +68,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
 });
-export default DataBaseProvider;
+
+export default App;

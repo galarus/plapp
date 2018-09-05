@@ -41,7 +41,9 @@ class PlantList extends Component<Props> {
         this.setState({...this.state, sortAttr: sortAttr, direction: direction}, ()=>{
             this._sortList();
         });
-      }     
+      }    
+      //PAGINATION AND LAZY LOADING
+      //THIS IS CALLED WHEN USER SCROLLS TO BOTTOM
     _updateList = () => {
         let { offset, renderedList } = this.state;
         let fullList = this.props.searchResults;
@@ -86,16 +88,18 @@ class PlantList extends Component<Props> {
         });
       }
     componentDidMount(){
-        console.log("platlist mounted")
+        console.log("plantlist mountaded")
+        let listlen = this.state.renderedList.length;
        this._onRefresh().then(() => {
-           console.log("scroll plz");
-         setTimeout(()=>this.flatList.scrollToIndex({index:19 , animated: false}), 1);
+         setTimeout(()=>this.flatList.scrollToIndex({
+             index:(0), 
+             animated: false}
+            ), 1);
         }
        );
     }
-
-    render(){
-       
+    render(){       
+        console.log("rendering list");
 return(
     <View>
     <PlantListHeader
