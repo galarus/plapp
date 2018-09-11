@@ -20,6 +20,7 @@ class PlantListHeader extends Component<Props>{
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
+            margin: 1
             }}>
 
 <ListHeaderCell title={"JEPSON CODE"} attr={"jepson_code"} {...this.props}/>

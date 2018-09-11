@@ -1,16 +1,42 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Modal} from 'react-native';
 
 class AboutModal extends Component<Props>{
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = { modalVisible: true};
        // console.log(this.props.item)
     }
+    _setModalVisible = (visible) => {
+        this.setState({modalVisible: visible})
+    } 
     render(){
        return (
+           <View>
+             <Modal
+          animationType="fade"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <View style={{margin: 50, padding: 50, justifyContent:'space-between'}}>
+            <View>
+              <Text>Welcome to Plapp</Text>
+                <View>
+                    <Text>About The App...</Text>
+                </View>
+              <TouchableOpacity
+                onPress={() => {
+                  this._setModalVisible(!this.state.modalVisible);
+                }} style={{backgroundColor:'red'}}>
+                <Text>Enter</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
         <TouchableOpacity
-        onPress={()=>{alert("about")}}
+        onPress={()=>{this._setModalVisible(true)}}
         style={{
          borderWidth:1,
          borderColor:'rgba(0,0,0,0.2)',
@@ -19,10 +45,9 @@ class AboutModal extends Component<Props>{
          width:50,
          height:40,
          backgroundColor:'#f0ffff',
-         borderRadius:40,
-        }}><Text>About</Text>
+         borderRadius:40        }}><Text>About</Text>
         </TouchableOpacity>
-
+</View>
         )
     }
 }

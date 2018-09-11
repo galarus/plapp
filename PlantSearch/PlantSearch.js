@@ -21,14 +21,8 @@ class PlantSearch extends Component<Props>{
         console.log("rending with findQuery: "+findQuery);
        return (
            <View>
-       <Modal
-          animationType="fade"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
-          <View style={{margin: 50, padding: 50}}>
+       
+          <View style={{margin: 5, padding: 5}}>
             <View>
             <Button
         onPress={this._setToDefault}
@@ -45,21 +39,10 @@ value={findQuery.jepson_max}
 onChangeText={(text)=>{this.props.onFindChange({...findQuery, jepson_max: text}) }}
 keyboardType="numeric"
 />
-              <TouchableHighlight
-                onPress={() => {
-                  this._setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Return to Search Results</Text>
-              </TouchableHighlight>
+             
             </View>
           </View>
-        </Modal>
 
-        <Button
-        onPress={()=>{this._setModalVisible(true)}}
-        title="Search"
-        accessibilityLabel="narrow the list of plants"
-        />
         </View>
         )
     }

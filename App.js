@@ -11,6 +11,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import plant_data from './plapp_data.js';
 import PlantHeader from './PlantHeader/PlantHeader.js'
 import PlantList from './PlantList/PlantList.js'
+import PlantSearch from './PlantSearch/PlantSearch.js'
 
 class App extends Component<Props> {
   constructor(props){
@@ -21,7 +22,7 @@ class App extends Component<Props> {
         jepson_min: "",
         jepson_max: ""
       },
-      searchResults: []
+      searchResults: plant_data
     };
   }
 
@@ -43,8 +44,8 @@ class App extends Component<Props> {
     console.log("rendering app "+this.state.searchResults.length);
     return (
       <View style={styles.container}>
-     <PlantHeader plants={this.state.plants} findQuery={this.state.findQuery} onFindChange={this._handleFindChange}/>
-      <View style={{flex:4, margin:18}}>
+     <PlantHeader/>
+      <View style={{flex:8, margin:18}}>
  
  
  {this.state.searchResults.length ?
@@ -54,7 +55,9 @@ class App extends Component<Props> {
  <Text>There are no plants matching your given search criteria.</Text>
  }
       </View>
-       
+       <View style={{flex:5}}>
+<PlantSearch plants={this.state.plants} findQuery={this.state.findQuery} onFindChange={this._handleFindChange}/>
+       </View>
       </View>
     );
   }
