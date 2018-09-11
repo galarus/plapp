@@ -23,7 +23,6 @@ class PlantListHeader extends Component<Props>{
             margin: 1
             }}>
 
-<ListHeaderCell title={"JEPSON CODE"} attr={"jepson_code"} {...this.props}/>
 <ListHeaderCell title={"GENUS"} attr={"plant_genus"} {...this.props}/>
 <ListHeaderCell title={"SPECIES"} attr={"plant_species"} {...this.props}/>
 

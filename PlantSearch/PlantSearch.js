@@ -10,7 +10,7 @@ class PlantSearch extends Component<Props>{
     };
        // console.log(this.props.item)
     _setToDefault = () => {
-        this.props.onFindChange({...this.props.findQuery, jepson_max: "", jepson_min: ""})
+        this.props.onFindChange({...this.props.findQuery, genus: "", species: ""})
     console.log("setting to default")
     }
     _setModalVisible = (visible) => {
@@ -29,15 +29,17 @@ class PlantSearch extends Component<Props>{
         title="Set To Default"
         accessibilityLabel="set the search criteria to the default values"
         />
-              <Text>Jepson code range:</Text>
+              <Text>Genus:</Text>
 <TextInput style={{borderColor: 'gray', borderWidth: 1}}
-            value={findQuery.jepson_min}
-            onChangeText={(text)=>{this.props.onFindChange({...findQuery, jepson_min: text}) }}
-            keyboardType="numeric" />
+            value={findQuery.genus}
+            onChangeText={(text)=>{this.props.onFindChange({...findQuery, genus: text}) }}
+            keyboardType="default" />
+                          <Text>Species:</Text>
+
 <TextInput style={{borderColor: 'gray', borderWidth: 1}} 
-value={findQuery.jepson_max}
-onChangeText={(text)=>{this.props.onFindChange({...findQuery, jepson_max: text}) }}
-keyboardType="numeric"
+value={findQuery.species}
+onChangeText={(text)=>{this.props.onFindChange({...findQuery, species: text}) }}
+keyboardType="default"
 />
              
             </View>

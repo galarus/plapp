@@ -4,8 +4,8 @@ import {StyleSheet, Text, View, TouchableOpacity, Modal} from 'react-native';
 class AboutModal extends Component<Props>{
     constructor(props){
         super(props);
-        this.state = { modalVisible: true};
-       // console.log(this.props.item)
+        this.state = { modalVisible: false};
+       // set to false for debugging
     }
     _setModalVisible = (visible) => {
         this.setState({modalVisible: visible})

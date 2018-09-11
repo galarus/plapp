@@ -20,7 +20,9 @@ class App extends Component<Props> {
       plants: plant_data,
       findQuery: {
         jepson_min: "",
-        jepson_max: ""
+        jepson_max: "",
+        genus:"",
+        species: ""
       },
       searchResults: plant_data
     };
@@ -30,10 +32,16 @@ class App extends Component<Props> {
     //code to filter results from plants into search results
     let min = Number(findQuery.jepson_min);
     let max = isNaN(parseInt(findQuery.jepson_max, 10))? Number.MAX_SAFE_INTEGER: Number(findQuery.jepson_max)
-    console.log("max "+max);
+    let genus = findQuery.genus.toLowerCase();
+    let species = findQuery.species.toLowerCase();
+    console.log("genus "+findQuery.genus);
+    console.log("species "+findQuery.species);
+
     let results = this.state.plants.filter((plant)=> {
       return plant.jepson_code >= min &&
-            plant.jepson_code <= max;
+            plant.jepson_code <= max &&
+            plant.plant_genus.includes(genus) &&
+            plant.plant_species.includes(species);
     });
 
     //first filter jepson code range min then max

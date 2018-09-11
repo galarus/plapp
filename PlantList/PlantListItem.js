@@ -13,7 +13,7 @@ class PlantListItem extends Component<Props>{
        return (
            <View
            style={{height:30}}>
-<Text>{item.jepson_code} {item.plant_genus} {item.plant_species}</Text>
+<Text>{item.plant_genus} {item.plant_species}</Text>
 </View>
 
         )

@@ -91,10 +91,10 @@ class PlantList extends Component<Props> {
         console.log("plantlist mountaded")
         let listlen = this.state.renderedList.length;
        this._onRefresh().then(() => {
-         setTimeout(()=>this.flatList.scrollToIndex({
-             index:(0), 
-             animated: false}
-            ), 1);
+         //setTimeout(()=>this.flatList.scrollToIndex({
+         //    index:(0), 
+         //    animated: false}
+         //   ), 1);
         }
        );
     }
