@@ -1,6 +1,6 @@
 // @flow
 export type PlantObject = {
-     "jepson_code": number,
+    "jepson_code": number,
     "species_code": string,
     "common_name": string,
     "plant_genus": string,

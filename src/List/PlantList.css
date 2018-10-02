@@ -1,27 +1,29 @@
-#customers {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+.row-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: DodgerBlue;
 }
 
-#customers td,
-#customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.row-container > div {
+  background-color: #f1f1f1;
+  width: 20vw;
+  margin: 5px;
+  padding: 0.5vh 5vw;
+  text-align: center;
+  line-height: 10px;
+  font-size: 20px;
 }
-
-#customers tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-  background-color: #ddd;
-}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
+.header-container {
+  display: flex;
+  justify-content: space-around;
   background-color: #4caf50;
-  color: white;
+  color: #f1f1f1;
+}
+
+.header-container > div {
+  width: 20px;
+  margin: 10px;
+  text-align: center;
+  line-height: 15px;
+  font-size: 20px;
 }
