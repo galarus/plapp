@@ -27,7 +27,13 @@ class PlantList extends React.Component<Props, State> {
   render() {
     const { plants } = this.state;
     return (
-      <div style={{ margin: '1em 2em', overflow: 'auto' }}>
+      <div
+        style={{
+          margin: '1em 2em',
+          overflow: 'auto',
+          width: '90vw'
+        }}
+      >
         <div className="header-container">
           <div>Genus</div>
           <div>Species</div>
@@ -37,8 +43,7 @@ class PlantList extends React.Component<Props, State> {
         </div>
         <div
           style={{
-            overflow: 'auto',
-            maxHeight: '50vh',
+            height: '200em',
             backgroundColor: 'blue-gray',
             fontFamily: 'Roboto'
           }}

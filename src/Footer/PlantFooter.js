@@ -1,10 +1,21 @@
 // @flow
 import * as React from 'react';
-//import './PlantFooter.css';
+import './PlantFooter.css';
 
 const PlantFooter = () => (
   <div className="App">
-    <div style={{ padding: '0.5em' }}>Search ^</div>
+    <div
+      style={{
+        padding: '2em',
+        width: '100%',
+        bottom: '1em',
+        backgroundColor: '#891d00',
+        color: '#f1f1f1',
+        fontWeight: 'bold'
+      }}
+    >
+      Search ^
+    </div>
   </div>
 );
 

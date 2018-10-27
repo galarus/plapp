@@ -2,16 +2,18 @@
   display: flex;
   justify-content: space-around;
   background-color: #dcdcdc;
+  overflow: visible;
+  width: 32em;
   margin: 0.1em;
-  border-radius: 0.1em;
+  border-radius: 0.2em;
 }
 
 .row-container > div {
-  width: 0em;
-  margin: 0.4em 1em;
-  padding: 0.1em 1em;
+  width: 0.1em;
+  margin: 0.3em;
+  padding: 0.1em;
   text-align: center;
-  line-height: 0.5em;
+  line-height: 0.85em;
   font-size: 0.7em;
 }
 .row-container:nth-child(odd) {
@@ -22,15 +24,19 @@
   border-color: black;
 }
 .header-container {
+  width: 32em;
   display: flex;
   justify-content: space-around;
-  background-color: #4caf50;
+  background-color: #58a400;
   color: #f1f1f1;
+  left: 0;
+  top: 10;
 }
 
 .header-container > div {
-  width: 0.3em;
-  margin: 0.5em 2em;
+  width: 0.1em;
+  margin: 0.5em 1.6em;
+  padding: 0em 1.1em;
   line-height: 1em;
   font-size: 0.8em;
 }

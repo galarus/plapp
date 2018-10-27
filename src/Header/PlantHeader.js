@@ -1,11 +1,19 @@
 // @flow
 import * as React from 'react';
-//import './PlantFooter.css';
+import './PlantHeader.css';
 
 const App = () => (
   <div className="App">
-    <div style={{ float: 'left', margin: '1em 2em 0em 2em', fontWeight: '900', fontSize: '1.5em' }}>
-      Pläpp
+    <div
+      style={{
+        padding: '0.1em 2em',
+        backgroundColor: '#6CCA00',
+        textAlign: 'left',
+        color: '#023B57',
+        width: '100%'
+      }}
+    >
+      <h1> Pläpp</h1>
     </div>
   </div>
 );

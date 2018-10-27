@@ -7,7 +7,15 @@ import PlantFooter from './Footer/PlantFooter';
 
 const App = () => (
   <div className="App">
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <PlantHeader />
       <PlantList />
       <PlantFooter />
