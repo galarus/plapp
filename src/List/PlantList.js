@@ -27,7 +27,7 @@ class PlantList extends React.Component<Props, State> {
   render() {
     const { plants } = this.state;
     return (
-      <div>
+      <div style={{ margin: '1em 2em', overflow: 'auto' }}>
         <div className="header-container">
           <div>Genus</div>
           <div>Species</div>
@@ -35,7 +35,14 @@ class PlantList extends React.Component<Props, State> {
           <div>Form</div>
           <div>Habitat</div>
         </div>
-        <div style={{ overflow: 'auto', maxHeight: 400 }}>
+        <div
+          style={{
+            overflow: 'auto',
+            maxHeight: '50vh',
+            backgroundColor: 'blue-gray',
+            fontFamily: 'Roboto'
+          }}
+        >
           <ReactList itemRenderer={this.renderItem} length={plants.length} />
         </div>
       </div>

@@ -1,17 +1,25 @@
 .row-container {
   display: flex;
   justify-content: space-around;
-  background-color: DodgerBlue;
+  background-color: #dcdcdc;
+  margin: 0.1em;
+  border-radius: 0.1em;
 }
 
 .row-container > div {
-  background-color: #f1f1f1;
-  width: 20vw;
-  margin: 5px;
-  padding: 0.5vh 5vw;
+  width: 0em;
+  margin: 0.4em 1em;
+  padding: 0.1em 1em;
   text-align: center;
-  line-height: 10px;
-  font-size: 20px;
+  line-height: 0.5em;
+  font-size: 0.7em;
+}
+.row-container:nth-child(odd) {
+  background-color: #c0c0c0;
+}
+.row-container:nth-child(odd) > div {
+  border: 1px;
+  border-color: black;
 }
 .header-container {
   display: flex;
@@ -21,9 +29,8 @@
 }
 
 .header-container > div {
-  width: 20px;
-  margin: 10px;
-  text-align: center;
-  line-height: 15px;
-  font-size: 20px;
+  width: 0.3em;
+  margin: 0.5em 2em;
+  line-height: 1em;
+  font-size: 0.8em;
 }
