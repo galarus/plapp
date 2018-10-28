@@ -1,11 +1,12 @@
 .row-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #dcdcdc;
   overflow: visible;
-  width: 32em;
-  margin: 0.1em;
-  border-radius: 0.2em;
+  width: 90vw;
+  margin: 0.2em;
+  padding: 0.1em 6em 0.1em 1.5em;
+  border-radius: 0.3em;
 }
 
 .row-container > div {
@@ -24,19 +25,20 @@
   border-color: black;
 }
 .header-container {
-  width: 32em;
+  width: 90vw;
   display: flex;
-  justify-content: space-around;
+  padding: 0.1em 6em 0.1em 1.5em;
+  margin: 0.2em;
+
+  justify-content: space-between;
   background-color: #58a400;
   color: #f1f1f1;
-  left: 0;
-  top: 10;
 }
 
 .header-container > div {
   width: 0.1em;
-  margin: 0.5em 1.6em;
-  padding: 0em 1.1em;
+  margin: 0.3em;
+  padding: 0.1em;
   line-height: 1em;
   font-size: 0.8em;
 }

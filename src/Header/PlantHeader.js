@@ -6,11 +6,12 @@ const App = () => (
   <div className="App">
     <div
       style={{
-        padding: '0.1em 2em',
-        backgroundColor: '#6CCA00',
+        padding: '0.1em 5em',
+        backgroundColor: '#98EC37',
         textAlign: 'left',
         color: '#023B57',
-        width: '100%'
+        width: '100%',
+        overflow: 'hidden'
       }}
     >
       <h1> Pläpp</h1>

@@ -29,9 +29,10 @@ class PlantList extends React.Component<Props, State> {
     return (
       <div
         style={{
-          margin: '1em 2em',
+          margin: '1.5em 1em',
           overflow: 'auto',
-          width: '90vw'
+          height: '350vh',
+          width: '80vw'
         }}
       >
         <div className="header-container">
@@ -43,7 +44,6 @@ class PlantList extends React.Component<Props, State> {
         </div>
         <div
           style={{
-            height: '200em',
             backgroundColor: 'blue-gray',
             fontFamily: 'Roboto'
           }}
