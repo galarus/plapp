@@ -1,21 +1,27 @@
 .footer {
-  padding: 0.5em 2em;
   width: 100%;
   position: fixed;
   bottom: 0;
-  background-color: #891d00;
   color: #f1f1f1;
   font-weight: bold;
-  flex: 1;
-  opacity: 0.5;
-  transition: padding 0.5s;
 }
-
-.footer:hover {
-  opacity: 0.8;
-  padding: 2em;
+.searchHead {
+  background-color: #891d00;
+  opacity: 0.66;
+  padding: 0.66em 2em;
+  transition-property: padding, opacity;
+  transition-duration: 0.25s, 0.1s;
 }
-
-.footer:active {
-  opacity: 1.5;
+.searchHead:hover {
+  opacity: 0.83;
+  padding: 1.8em;
+}
+.searchHead:active {
+  opacity: 1;
+}
+.searchBody {
+  opacity: 0.9;
+  background-color: #ff8c64;
+  width: 100%;
+  height: 80vh;
 }
