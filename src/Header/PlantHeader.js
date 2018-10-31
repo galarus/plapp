@@ -15,7 +15,7 @@ const App = () => (
         style={{
           textAlign: 'left',
           color: '#023B57',
-          padding: '0.1em 5em'
+          padding: '0.1vh 5vw'
         }}
       >
         Pläpp

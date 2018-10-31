@@ -8,13 +8,13 @@
 .searchHead {
   background-color: #891d00;
   opacity: 0.66;
-  padding: 0.66em 2em;
+  padding: 0.7em 2em;
   transition-property: padding, opacity;
   transition-duration: 0.25s, 0.1s;
 }
 .searchHead:hover {
   opacity: 0.83;
-  padding: 1.8em;
+  padding: 1.5em;
 }
 .searchHead:active {
   opacity: 1;
@@ -23,5 +23,9 @@
   opacity: 0.9;
   background-color: #ff8c64;
   width: 100%;
+  height: 0vh;
+  transition: height 0.5s;
+}
+.searchBody-show {
   height: 80vh;
 }

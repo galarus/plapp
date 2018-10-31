@@ -9,7 +9,7 @@ type State = {
 
 class PlantFooter extends React.Component<Props, State> {
   state = {
-    searching: true
+    searching: false
   };
 
   toggleSearching = () => {
@@ -19,13 +19,20 @@ class PlantFooter extends React.Component<Props, State> {
 
   render() {
     const { searching } = this.state;
+    const bodyClass = searching ? 'searchBody searchBody-show' : 'searchBody';
     return (
       <div className="App">
         <div className="footer">
-          <div className="searchHead" onClick={this.toggleSearching}>
+          <div
+            role="button"
+            tabIndex="0"
+            className="searchHead"
+            onKeyDown={this.toggleSearching}
+            onClick={this.toggleSearching}
+          >
             Search ^
           </div>
-          {searching ? <div className="searchBody">trait search tbc</div> : null}
+          <div className={bodyClass}>trait search tbc</div>
         </div>
       </div>
     );
