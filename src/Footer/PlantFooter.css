@@ -5,9 +5,12 @@
   color: #f1f1f1;
   font-weight: bold;
 }
+.z-show {
+  z-index: 10;
+}
 .searchHead {
   background-color: #891d00;
-  opacity: 0.66;
+  opacity: 0.666;
   padding: 0.7em 2em;
   transition-property: padding, opacity;
   transition-duration: 0.25s, 0.1s;

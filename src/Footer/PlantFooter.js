@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import AddBtn from '../svg/AddBtn';
 import './PlantFooter.css';
 
 type Props = *;
@@ -20,12 +21,14 @@ class PlantFooter extends React.Component<Props, State> {
   render() {
     const { searching } = this.state;
     const bodyClass = searching ? 'searchBody searchBody-show' : 'searchBody';
+    const footerClass = searching ? 'footer z-show' : 'footer';
+
     return (
       <div className="App">
-        <div className="footer">
+        <div className={footerClass}>
           <div
             role="button"
-            tabIndex="0"
+            tabIndex="-10"
             className="searchHead"
             onKeyDown={this.toggleSearching}
             onClick={this.toggleSearching}
@@ -34,6 +37,7 @@ class PlantFooter extends React.Component<Props, State> {
           </div>
           <div className={bodyClass}>trait search tbc</div>
         </div>
+        <AddBtn />
       </div>
     );
   }
