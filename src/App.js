@@ -18,7 +18,6 @@ const App = () => (
       }}
     >
       <PlantHeader />
-      <a href="#">Scroll To Top ↑</a>
       <PlantList />
       <PlantFooter />
     </div>

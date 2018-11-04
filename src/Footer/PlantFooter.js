@@ -10,7 +10,8 @@ type State = {
 
 class PlantFooter extends React.Component<Props, State> {
   state = {
-    searching: false
+    searching: false,
+    adding: false
   };
 
   toggleSearching = () => {
@@ -33,11 +34,21 @@ class PlantFooter extends React.Component<Props, State> {
             onKeyDown={this.toggleSearching}
             onClick={this.toggleSearching}
           >
-            Search ^
+            {searching ? 'Close ↓' : 'Search ↑'}
           </div>
           <div className={bodyClass}>trait search tbc</div>
         </div>
-        <AddBtn />
+        <div
+          style={{
+            position: 'absolute',
+            right: '0%',
+            bottom: '0%',
+            boxShadow: '10em',
+            transform: 'scale(0.7)'
+          }}
+        >
+          <AddBtn />
+        </div>
       </div>
     );
   }
