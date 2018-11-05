@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import ReactList from 'react-list';
+import * as ReactList from 'react-list';
 import './PlantList.css';
 import type { PlantObject } from '../plant_data';
 import plantData from '../plant_data';
@@ -37,6 +37,7 @@ class PlantList extends React.Component<Props, State> {
             : b[sortAttr].toString().localeCompare(a[sortAttr])
       );
     }
+    return plants;
   };
 
   renderItem = (index: number, key: string) => {
@@ -63,9 +64,8 @@ class PlantList extends React.Component<Props, State> {
       plants: newPlants
     });
   };
-  // Se
 
-  listRef: ?HTMLElement;
+  listRef: ReactList;
 
   render() {
     const { plants } = this.state;
@@ -80,7 +80,7 @@ class PlantList extends React.Component<Props, State> {
       >
         <a
           style={{ position: 'fixed', zIndex: 1, top: '15%' }}
-          onClick="listRef.scrollTo(0)"
+          onClick={() => this.listRef.scrollTo(-5)}
           href="/#"
         >
           Scroll To Top ↑
@@ -125,7 +125,14 @@ class PlantList extends React.Component<Props, State> {
             fontFamily: 'Roboto'
           }}
         >
-          <ReactList itemRenderer={this.renderItem} length={plants.length} type="uniform" />
+          <ReactList
+            ref={listRef => {
+              this.listRef = listRef;
+            }}
+            itemRenderer={this.renderItem}
+            length={plants.length}
+            type="uniform"
+          />
         </div>
       </div>
     );
