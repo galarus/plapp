@@ -5,7 +5,8 @@ import './PlantFooter.css';
 
 type Props = *;
 type State = {
-  searching: boolean
+  searching: boolean,
+  adding: boolean
 };
 
 class PlantFooter extends React.Component<Props, State> {
