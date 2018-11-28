@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import './App.css';
-import PlantList from './List/PlantList';
 import PlantHeader from './Header/PlantHeader';
 import PlantFooter from './Footer/PlantFooter';
 import plantData from './plant_data';
@@ -73,13 +72,7 @@ class App extends React.Component<Props, State> {
               height: '350vh',
               width: '80vw'
             }}
-          >
-            {searchResults.length ? (
-              <PlantList searchResults={searchResults} key={searchResults.length} />
-            ) : (
-              <p>There are no plants matching your given search criteria.</p>
-            )}
-          </div>
+          />
           <PlantFooter
             plants={searchResults}
             searchQuery={searchQuery}

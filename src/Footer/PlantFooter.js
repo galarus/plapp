@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import AddBtn from '../svg/AddBtn';
+import PlantList from '../List/PlantList';
 import './PlantFooter.css';
 
 type Props = *;
@@ -22,6 +23,7 @@ class PlantFooter extends React.Component<Props, State> {
 
   render() {
     const { searching } = this.state;
+    const { searchResults } = this.props;
     const bodyClass = searching ? 'searchBody searchBody-show' : 'searchBody';
     const footerClass = searching ? 'footer z-show' : 'footer';
 
@@ -37,7 +39,13 @@ class PlantFooter extends React.Component<Props, State> {
           >
             {searching ? 'Close ↓' : 'Search ↑'}
           </div>
-          <div className={bodyClass}>trait search tbc</div>
+          <div className={bodyClass}>
+            {searchResults && searchResults.length ? (
+              <PlantList searchResults={searchResults} key={searchResults.length} />
+            ) : (
+              <p>There are no plants matching your given search criteria.</p>
+            )}
+          </div>
         </div>
         <div
           style={{
