@@ -3,8 +3,11 @@ import * as React from 'react';
 import AddBtn from '../svg/AddBtn';
 import PlantList from '../List/PlantList';
 import './PlantFooter.css';
+import type { PlantObject } from '../plant_data';
 
-type Props = *;
+type Props = {
+  searchResults: Array<PlantObject>
+};
 type State = {
   searching: boolean,
   adding: boolean

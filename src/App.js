@@ -74,7 +74,7 @@ class App extends React.Component<Props, State> {
             }}
           />
           <PlantFooter
-            plants={searchResults}
+            searchResults={searchResults}
             searchQuery={searchQuery}
             onSearchChange={this.handleSearchChange}
           />
