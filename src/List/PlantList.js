@@ -98,13 +98,6 @@ class PlantList extends React.Component<Props, State> {
 
     return (
       <div>
-        <a
-          style={{ position: 'fixed', zIndex: 1, top: '15%' }}
-          // onClick={this.listRef && this.listRef.scrollTo(-5)}
-          href="/#"
-        >
-          Scroll To Top ↑
-        </a>
         <div className="header-container">
           <div
             role="button"

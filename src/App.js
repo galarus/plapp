@@ -4,6 +4,8 @@ import './App.css';
 import PlantHeader from './Header/PlantHeader';
 import PlantFooter from './Footer/PlantFooter';
 import plantData from './plant_data';
+import AboutBtn from './svg/AboutBtn';
+
 import type { PlantObject } from './plant_data';
 
 type SearchQuery = {
@@ -79,6 +81,7 @@ class App extends React.Component<Props, State> {
             onSearchChange={this.handleSearchChange}
           />
         </div>
+        <AboutBtn />
       </div>
     );
   }

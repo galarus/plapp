@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 const AboutBtn = () => (
-  <span style={{ position: 'absolute', right: '1.5em', top: '1.5em', boxShadow: '10em' }}>
+  <span style={{ position: 'absolute', right: '0.1em', top: '0.4em', boxShadow: '10em' }}>
     <svg width="80" height="40">
       <defs>
         <filter id="f1" x="0" y="0" width="200%" height="200%">

@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import './PlantHeader.css';
-import AboutBtn from '../svg/AboutBtn';
 
 const PlantHeader = () => (
   <div className="App">
@@ -10,19 +9,20 @@ const PlantHeader = () => (
         backgroundColor: '#98EC37',
         width: '100%',
         overflow: 'hidden',
-        opacity: '0.666'
+        opacity: '0.666',
+        height: '10vh'
       }}
     >
-      <h1
+      <h2
         style={{
           textAlign: 'left',
           color: '#023B57',
-          padding: '0.1vh 5vw'
+          margin: '1%',
+          padding: '0vh 5vw'
         }}
       >
         Pläpp
-      </h1>
-      <AboutBtn />
+      </h2>
     </div>
   </div>
 );
