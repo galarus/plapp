@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import './PlantList.css';
-import type { PlantObject } from '../plant_data';
+import type { PlantObject } from '../../plant_data';
 
 type Props = {
   show: boolean,

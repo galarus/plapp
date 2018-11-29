@@ -1,11 +1,10 @@
 // @flow
 import * as React from 'react';
 import './App.css';
-import PlantHeader from './Header/PlantHeader';
-import PlantFooter from './Footer/PlantFooter';
 import plantData from './plant_data';
-import AboutBtn from './svg/AboutBtn';
-
+import PlantHeader from './Components/Header/PlantHeader';
+import PlantFooter from './Components/Footer/PlantFooter';
+import AboutContent from './Components/About/AboutContent';
 import type { PlantObject } from './plant_data';
 
 type SearchQuery = {
@@ -56,32 +55,23 @@ class App extends React.Component<Props, State> {
     const { searchResults, searchQuery } = this.state;
     return (
       <div className="App">
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100vh',
-            width: '100vw',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
+        <div>
           <PlantHeader />
           <div
             style={{
-              margin: '1.5em 1em',
-              overflow: 'auto',
-              height: '350vh',
-              width: '80vw'
+              position: 'absolute',
+              left: '10%',
+              top: '10%'
             }}
-          />
+          >
+            <AboutContent />
+          </div>
           <PlantFooter
             searchResults={searchResults}
             searchQuery={searchQuery}
             onSearchChange={this.handleSearchChange}
           />
         </div>
-        <AboutBtn />
       </div>
     );
   }

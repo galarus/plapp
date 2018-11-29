@@ -10,14 +10,14 @@ const PlantHeader = () => (
         width: '100%',
         overflow: 'hidden',
         opacity: '0.666',
-        height: '10vh'
+        height: '3em'
       }}
     >
       <h2
         style={{
           textAlign: 'left',
           color: '#023B57',
-          margin: '1%',
+          margin: '2%',
           padding: '0vh 5vw'
         }}
       >
