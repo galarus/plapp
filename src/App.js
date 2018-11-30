@@ -5,6 +5,7 @@ import plantData from './plant_data';
 import PlantHeader from './Components/Header/PlantHeader';
 import PlantFooter from './Components/Footer/PlantFooter';
 import AboutContent from './Components/About/AboutContent';
+import SearchContent from './Components/Search/SearchContent';
 import type { PlantObject } from './plant_data';
 
 type SearchQuery = {
@@ -65,6 +66,7 @@ class App extends React.Component<Props, State> {
             }}
           >
             <AboutContent />
+            <SearchContent />
           </div>
           <PlantFooter
             searchResults={searchResults}

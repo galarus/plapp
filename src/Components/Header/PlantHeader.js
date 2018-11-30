@@ -17,7 +17,7 @@ const PlantHeader = () => (
         style={{
           textAlign: 'left',
           color: '#023B57',
-          margin: '2%',
+          margin: '1%',
           padding: '0vh 5vw'
         }}
       >

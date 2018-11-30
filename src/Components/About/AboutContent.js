@@ -21,22 +21,9 @@ class AboutContent extends React.Component<Props, State> {
     const { show } = this.state;
     return (
       <div style={{ postion: 'relative' }}>
-        <span
-          style={{
-            position: 'absolute',
-            right: '0em',
-            top: '-2.3em',
-            boxShadow: '10em'
-          }}
-          role="button"
-          tabIndex="-100"
-          onKeyDown={this.toggleShowAbout}
-          onClick={this.toggleShowAbout}
-        >
-          <AboutBtn />
-        </span>
+        <AboutBtn toggleShowAbout={this.toggleShowAbout} />
         <div>
-          {show ? (
+          {show && (
             <div
               style={{
                 width: '60%',
@@ -73,8 +60,6 @@ class AboutContent extends React.Component<Props, State> {
                 species that match your selections.
               </p>
             </div>
-          ) : (
-            <div>nothing</div>
           )}
         </div>
       </div>

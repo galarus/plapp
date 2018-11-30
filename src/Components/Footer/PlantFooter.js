@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PlantList from '../List/PlantList';
 import './PlantFooter.css';
-import type { PlantObject } from '../plant_data';
+import type { PlantObject } from '../../plant_data';
 
 type Props = {
   searchResults: Array<PlantObject>
@@ -36,11 +36,13 @@ class PlantFooter extends React.Component<Props, State> {
           onKeyDown={this.toggleSearching}
           onClick={this.toggleSearching}
         >
-          {!searching ? 'Search' : 'Close'}
+          {searching ? 'Search' : 'Close'}
         </div>
         <div className={bodyClass}>
           {searchResults && searchResults.length ? (
-            <PlantList searchResults={searchResults} key={searchResults.length} />
+            <div className="resultsList">
+              <PlantList searchResults={searchResults} key={searchResults.length} />
+            </div>
           ) : (
             <p>There are no plants matching your given search criteria.</p>
           )}
