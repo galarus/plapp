@@ -85,8 +85,11 @@ class SearchContent extends React.Component<Props, State> {
           marginLeft: '10em',
           marginRight: '10em',
           marginTop: '1em',
+          width: '60vw',
           padding: '0.5em 2em',
-          backgroundColor: 'blue'
+          backgroundColor: 'blue',
+          borderWidth: '2px',
+          borderStyle: 'inset'
         }}
       >
         <h3>Leaf Shape</h3>

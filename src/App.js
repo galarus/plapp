@@ -8,10 +8,29 @@ import AboutContent from './Components/About/AboutContent';
 import SearchContent from './Components/Search/SearchContent';
 import type { PlantObject } from './plant_data';
 
+type Shapes = {
+  ovate: boolean,
+  lanceolate: boolean,
+  obovate: boolean,
+  cordate: boolean,
+  linear: boolean
+};
+type Arrangements = {
+  basal: boolean,
+  whirled: boolean,
+  alternate: boolean,
+  opposite: boolean
+};
+type Forms = {
+  grass: boolean,
+  forb: boolean,
+  tree: boolean,
+  parasite: boolean
+};
 type SearchQuery = {
-  jepson_range: Array<?string>,
-  genus: string,
-  species: string
+  forms: Forms,
+  arrangements: Arrangements,
+  shapes: Shapes
 };
 
 type Props = *;
@@ -23,34 +42,33 @@ type State = {
 class App extends React.Component<Props, State> {
   state = {
     searchQuery: {
-      jepson_range: ['', ''],
-      genus: '',
-      species: ''
+      shapes: {
+        ovate: false,
+        lanceolate: false,
+        obovate: false,
+        cordate: false,
+        linear: false
+      },
+      arrangements: {
+        basal: false,
+        whirled: false,
+        alternate: false,
+        opposite: false
+      },
+      forms: {
+        grass: false,
+        forb: false,
+        tree: false,
+        parasite: false
+      }
     },
     searchResults: plantData
   };
-
+  /*
   handleSearchChange = (searchQuery: SearchQuery) => {
-    const min = Number(searchQuery.jepson_range[0]);
-    const max = isNaN(parseInt(searchQuery.jepson_range[1], 10))
-      ? Number.MAX_SAFE_INTEGER
-      : Number(searchQuery.jepson_range[1]);
-    const genus = searchQuery.genus.toLowerCase();
-    const species = searchQuery.species.toLowerCase();
-    console.log(`genus ${searchQuery.genus}`);
-    console.log(`species ${searchQuery.species}`);
-
-    const results = plantData.filter(
-      plant =>
-        plant.jepson_code >= min &&
-        plant.jepson_code <= max &&
-        plant.plant_genus.includes(genus) &&
-        plant.plant_species.includes(species)
-    );
-    // first filter jepson code range min then max
-    console.log(`handle find change from app component ${searchQuery}`);
-    this.setState({ searchQuery, searchResults: results });
+   
   };
+*/
 
   render() {
     const { searchResults, searchQuery } = this.state;

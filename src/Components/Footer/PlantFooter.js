@@ -36,7 +36,7 @@ class PlantFooter extends React.Component<Props, State> {
           onKeyDown={this.toggleSearching}
           onClick={this.toggleSearching}
         >
-          {searching ? 'Search' : 'Close'}
+          {searching ? 'Close' : 'Show Results'}
         </div>
         <div className={bodyClass}>
           {searchResults && searchResults.length ? (

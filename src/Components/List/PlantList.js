@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactList from 'react-list';
 import PlantItemModal from './PlantItemModal';
 import './PlantList.css';
-import type { PlantObject } from '../plant_data';
+import type { PlantObject } from '../../plant_data';
 
 type Props = {
   searchResults: Array<PlantObject>
@@ -16,7 +16,7 @@ type State = {
 };
 class PlantList extends React.Component<Props, State> {
   state = {
-    sortAttr: 'jepson_code',
+    sortAttr: '',
     sortDir: 0,
     viewing: true,
     viewingPlant: null
@@ -37,22 +37,11 @@ class PlantList extends React.Component<Props, State> {
     const { sortAttr, sortDir } = this.state;
     const { searchResults } = this.props;
     const plants = searchResults;
-
     if (sortDir === 1) {
-      return plants.sort(
-        (a, b) =>
-          sortAttr === 'jepson_code'
-            ? a[sortAttr] - b[sortAttr]
-            : a[sortAttr].toString().localeCompare(b[sortAttr])
-      );
+      return plants.sort((a, b) => a[sortAttr].toString().localeCompare(b[sortAttr]));
     }
     if (sortDir === -1) {
-      return plants.sort(
-        (a, b) =>
-          sortAttr === 'jepson_code'
-            ? b[sortAttr] - a[sortAttr]
-            : b[sortAttr].toString().localeCompare(a[sortAttr])
-      );
+      return plants.sort((a, b) => b[sortAttr].toString().localeCompare(a[sortAttr]));
     }
     return plants;
   };
@@ -71,10 +60,10 @@ class PlantList extends React.Component<Props, State> {
         onKeyDown={this.openViewModal(plant)}
         onClick={this.openViewModal(plant)}
       >
-        <div>{plant.plant_genus}</div>
-        <div>{plant.plant_species}</div>
+        <div>{`${plant.plant_genus} ${plant.plant_species}`}</div>
+        <div>{plant.lf_shape}</div>
+        <div>{plant.lf_arngmt}</div>
         <div>{plant.form}</div>
-        <div>{plant.habitat}</div>
       </div>
     );
   };
@@ -105,21 +94,31 @@ class PlantList extends React.Component<Props, State> {
             onKeyDown={this.toggleTraitSort('plant_genus')}
             onClick={this.toggleTraitSort('plant_genus')}
           >
-            Genus
+            genus species
           </div>
           <div
             role="button"
             tabIndex="-2"
-            onKeyDown={this.toggleTraitSort('plant_species')}
-            onClick={this.toggleTraitSort('plant_species')}
+            onKeyDown={this.toggleTraitSort('lf_shape')}
+            onClick={this.toggleTraitSort('lf_shape')}
           >
-            Species
+            leaf shape
           </div>
-          <div role="button" tabIndex="-3">
-            Form
+          <div
+            role="button"
+            tabIndex="-3"
+            onKeyDown={this.toggleTraitSort('lf_arngmt')}
+            onClick={this.toggleTraitSort('lf_arngmt')}
+          >
+            leaf arrangement
           </div>
-          <div role="button" tabIndex="-4">
-            Habitat
+          <div
+            role="button"
+            tabIndex="-4"
+            onKeyDown={this.toggleTraitSort('form')}
+            onClick={this.toggleTraitSort('form')}
+          >
+            leaf form
           </div>
         </div>
         <div
