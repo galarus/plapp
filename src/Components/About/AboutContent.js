@@ -27,38 +27,41 @@ class AboutContent extends React.Component<Props, State> {
             <div
               style={{
                 width: '60%',
-                margin: 'auto',
+                margin: '0% 10%',
                 padding: '0px 40px',
                 border: '1px dashed black',
-                borderRadius: '2em'
+                borderRadius: '2em',
+                backgroundColor: 'rgba(255, 140, 100, 0.55)'
               }}
             >
-              <span
-                role="button"
-                tabIndex="-1"
-                onKeyDown={this.toggleShowAbout}
-                onClick={this.toggleShowAbout}
-                style={{
-                  float: 'right',
-                  marginRight: '6vw',
-                  marginTop: '6vh',
-                  borderRadius: '10px',
-                  width: '20px',
-                  height: '20px',
-                  border: '1px solid black'
-                }}
-              >
-                &#10005;
-              </span>
-              <br />
-              <br />
+              <div style={{ opacity: '1' }}>
+                <span
+                  role="button"
+                  tabIndex="-1"
+                  onKeyDown={this.toggleShowAbout}
+                  onClick={this.toggleShowAbout}
+                  style={{
+                    float: 'right',
+                    marginRight: '6vw',
+                    marginTop: '6vh',
+                    borderRadius: '10px',
+                    width: '20px',
+                    height: '20px',
+                    border: '1px solid black'
+                  }}
+                >
+                  &#10005;
+                </span>
+                <br />
+                <br />
 
-              <p style={{ textAlign: 'left' }}>
-                <span style={{ paddingLeft: '2em' }} />
-                This app will help you identify plants that you see based on entering their
-                characteristics. Click on the selections and you’ll filter the database to only show
-                species that match your selections.
-              </p>
+                <p style={{ textAlign: 'left' }}>
+                  <span style={{ paddingLeft: '2em' }} />
+                  This app will help you identify plants that you see based on entering their
+                  characteristics. Click on the selections and you’ll filter the database to only
+                  show species that match your selections.
+                </p>
+              </div>
             </div>
           )}
         </div>

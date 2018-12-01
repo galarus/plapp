@@ -82,12 +82,12 @@ class SearchContent extends React.Component<Props, State> {
       <div
         style={{
           textAlign: 'left',
-          marginLeft: '10em',
+          marginLeft: '10%',
           marginRight: '10em',
           marginTop: '1em',
           width: '60vw',
           padding: '0.5em 2em',
-          backgroundColor: 'blue',
+          backgroundColor: '#4FA2BE',
           borderWidth: '2px',
           borderStyle: 'inset'
         }}
