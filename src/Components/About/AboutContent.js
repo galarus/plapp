@@ -27,7 +27,7 @@ class AboutContent extends React.Component<Props, State> {
             <div
               style={{
                 width: '60%',
-                margin: '0% 10%',
+                margin: '0% 12%',
                 padding: '0px 40px',
                 border: '1px dashed black',
                 borderRadius: '2em',

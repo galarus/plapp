@@ -28,7 +28,14 @@ function AboutBtn(props: Props) {
             <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
           </filter>
         </defs>
-        <circle cx="16" cy="16" r="16" fill="#555" strokeWidth="3" filter="url(#f1)" />
+        <circle
+          cx="16"
+          cy="16"
+          r="16"
+          fill="rgba(255,67,3,0.5)"
+          strokeWidth="3"
+          filter="url(#f1)"
+        />
         <text x="20%" y="45%" textAnchor="middle" fill="#fff" dy=".3em">
           ?
         </text>
