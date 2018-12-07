@@ -20,116 +20,163 @@ type Forms = {
   tree: boolean,
   parasite: boolean
 };
-type Props = *;
-type State = {
-  shapes: Shapes,
+type SearchQuery = {
+  forms: Forms,
   arrangements: Arrangements,
-  forms: Forms
+  shapes: Shapes
 };
-class SearchContent extends React.Component<Props, State> {
-  state = {
-    shapes: {
-      ovate: false,
-      lanceolate: false,
-      obovate: false,
-      cordate: false,
-      linear: false
-    },
-    arrangements: {
-      basal: false,
-      whirled: false,
-      alternate: false,
-      opposite: false
-    },
-    forms: {
-      grass: false,
-      forb: false,
-      tree: false,
-      parasite: false
-    }
-  };
+type Props = {
+  searchQuery: SearchQuery,
+  onSearchChange: *
+};
 
-  handleShapeChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-    this.setState({
-      shapes: { [name]: value }
-    });
-  };
-
-  handleArrangementChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-    this.setState({
-      arrangements: { [name]: value }
-    });
-  };
-
-  handleFormChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const { name } = target;
-    this.setState({
-      forms: { [name]: value }
-    });
-  };
-
-  render() {
-    const { shapes, arrangements, forms } = this.state;
-    return (
-      <div
-        style={{
-          textAlign: 'left',
-          marginLeft: '10%',
-          marginRight: '10em',
-          marginTop: '1em',
-          width: '60vw',
-          padding: '0.5em 2em',
-          backgroundColor: '#4FA2BE',
-          borderWidth: '2px',
-          borderStyle: 'inset'
-        }}
-      >
-        <h3>Leaf Shape</h3>
-        <form>
-          <div>
-            ovate:
-            <input
-              name="ovate"
-              type="checkbox"
-              checked={shapes.ovate}
-              onChange={this.handleShapeChange}
-            />
-          </div>
-        </form>
-        <h3>Leaf Arrangement</h3>
-        <form>
-          <div>
-            basal:
-            <input
-              name="basal"
-              type="checkbox"
-              checked={arrangements.basal}
-              onChange={this.handleArrangementChange}
-            />
-          </div>
-        </form>
-        <h3>Form</h3>
-        <form>
-          <div>
-            grass:
-            <input
-              name="grass"
-              type="checkbox"
-              checked={forms.grass}
-              onChange={this.handleFormChange}
-            />
-          </div>
-        </form>
-      </div>
-    );
-  }
+function SearchContent(props: Props) {
+  const { searchQuery, onSearchChange } = props;
+  const { shapes, forms, arrangements } = searchQuery;
+  return (
+    <div
+      style={{
+        textAlign: 'left',
+        marginLeft: '10%',
+        marginRight: '10em',
+        marginTop: '1em',
+        width: '60vw',
+        height: '50vh',
+        overflow: 'auto',
+        padding: '0.2em 2em 2em 2em',
+        backgroundColor: '#4FA2BE',
+        borderWidth: '2px',
+        borderStyle: 'inset'
+      }}
+    >
+      <h3>Leaf Shape</h3>
+      <form>
+        <div>
+          ovate:
+          <input
+            name="ovate"
+            type="checkbox"
+            checked={shapes.ovate || false}
+            onChange={onSearchChange('shape')}
+          />
+        </div>
+        <div>
+          lanceolate:
+          <input
+            name="lanceolate"
+            type="checkbox"
+            checked={shapes.lanceolate}
+            onChange={onSearchChange('shape')}
+          />
+        </div>
+        <div>
+          obovate:
+          <input
+            name="obovate"
+            type="checkbox"
+            checked={shapes.obovate}
+            onChange={onSearchChange('shape')}
+          />
+        </div>
+        <div>
+          cordate:
+          <input
+            name="cordate"
+            type="checkbox"
+            checked={shapes.cordate}
+            onChange={onSearchChange('shape')}
+          />
+        </div>
+        <div>
+          linear:
+          <input
+            name="linear"
+            type="checkbox"
+            checked={shapes.linear}
+            onChange={onSearchChange('shape')}
+          />
+        </div>
+      </form>
+      <h3>Leaf Arrangement</h3>
+      <form>
+        <div>
+          basal:
+          <input
+            name="basal"
+            type="checkbox"
+            checked={arrangements.basal}
+            onChange={onSearchChange('arrangement')}
+          />
+        </div>
+        <div>
+          whirled:
+          <input
+            name="whirled"
+            type="checkbox"
+            checked={arrangements.whirled}
+            onChange={onSearchChange('arrangement')}
+          />
+        </div>
+        <div>
+          alternate:
+          <input
+            name="alternate"
+            type="checkbox"
+            checked={arrangements.alternate}
+            onChange={onSearchChange('arrangement')}
+          />
+        </div>
+        <div>
+          opposite:
+          <input
+            name="opposite"
+            type="checkbox"
+            checked={arrangements.opposite}
+            onChange={onSearchChange('arrangement')}
+          />
+        </div>
+      </form>
+      <h3>Form</h3>
+      <form>
+        <div>
+          grass:
+          <input
+            name="grass"
+            type="checkbox"
+            checked={forms.grass}
+            onChange={onSearchChange('form')}
+          />
+        </div>
+        <div>
+          forb:
+          <input
+            name="forb"
+            type="checkbox"
+            checked={forms.forb}
+            onChange={onSearchChange('form')}
+          />
+        </div>
+        <div>
+          tree:
+          <input
+            name="tree"
+            type="checkbox"
+            checked={forms.tree}
+            onChange={onSearchChange('form')}
+          />
+        </div>
+        <div>
+          parasite:
+          <input
+            name="parasite"
+            type="checkbox"
+            checked={forms.parasite}
+            onChange={onSearchChange('form')}
+          />
+        </div>
+      </form>
+    </div>
+  );
 }
+
 export default SearchContent;

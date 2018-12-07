@@ -64,11 +64,65 @@ class App extends React.Component<Props, State> {
     },
     searchResults: plantData
   };
-  /*
-  handleSearchChange = (searchQuery: SearchQuery) => {
-   
+
+  handleSearchChange = () => {
+    const { searchQuery } = this.state;
+    const { shapes } = searchQuery;
+
+    const results = plantData.filter(
+      plant =>
+        (shapes.ovate && plant.lf_shape === 'ovate') ||
+        (shapes.lanceolate && plant.lf_shape === 'lanceolate') ||
+        (shapes.obovate && plant.lf_shape === 'obovate') ||
+        (shapes.cordate && plant.lf_shape === 'cordate') ||
+        (shapes.linear && plant.lf_shape === 'linear')
+    );
+    console.log(`handle find change from app component ${shapes.ovate}`);
+    this.setState(prevState => ({ ...prevState, searchResults: results }));
   };
-*/
+
+  handleChange = (trait: string) => (event: SyntheticInputEvent<HTMLInputElement>) => {
+    const { target } = event;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name } = target;
+
+    switch (trait) {
+      case 'shape':
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: {
+              ...prevState.searchQuery,
+              shapes: { ...prevState.searchQuery.shapes, [name]: value }
+            }
+          }),
+          this.handleSearchChange()
+        );
+        break;
+      case 'arrangement':
+        this.setState(prevState => ({
+          ...prevState,
+          searchQuery: {
+            ...prevState.searchQuery,
+
+            arrangements: { ...prevState.searchQuery.arrangements, [name]: value }
+          }
+        }));
+        break;
+      case 'form':
+        this.setState(prevState => ({
+          ...prevState,
+          searchQuery: {
+            ...prevState.searchQuery,
+
+            forms: { ...prevState.searchQuery.forms, [name]: value }
+          }
+        }));
+        break;
+      default:
+        break;
+    }
+  };
 
   render() {
     const { searchResults, searchQuery } = this.state;
@@ -84,13 +138,9 @@ class App extends React.Component<Props, State> {
             }}
           >
             <AboutContent />
-            <SearchContent />
+            <SearchContent onSearchChange={this.handleChange} searchQuery={searchQuery} />
           </div>
-          <PlantFooter
-            searchResults={searchResults}
-            searchQuery={searchQuery}
-            onSearchChange={this.handleSearchChange}
-          />
+          <PlantFooter searchResults={searchResults} />
         </div>
       </div>
     );
