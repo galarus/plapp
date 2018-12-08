@@ -5,7 +5,8 @@
   "rules": {
     "flowtype/define-flow-type": 1,
     "flowtype/use-flow-type": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-plusplus": "off"
   },
   "env": {
     "browser": true,

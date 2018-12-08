@@ -65,19 +65,19 @@ class App extends React.Component<Props, State> {
     searchResults: plantData
   };
 
-  handleSearchChange = () => {
-    const { searchQuery } = this.state;
-    const { shapes } = searchQuery;
+  handleSearchChange = (newQuery: SearchQuery) => {
+    const { shapes } = newQuery;
+    const shapesQ = Object.entries(shapes)
+      .filter(shape => shape[1])
+      .map(shape => shape[0]);
 
-    const results = plantData.filter(
-      plant =>
-        (shapes.ovate && plant.lf_shape === 'ovate') ||
-        (shapes.lanceolate && plant.lf_shape === 'lanceolate') ||
-        (shapes.obovate && plant.lf_shape === 'obovate') ||
-        (shapes.cordate && plant.lf_shape === 'cordate') ||
-        (shapes.linear && plant.lf_shape === 'linear')
-    );
-    console.log(`handle find change from app component ${shapes.ovate}`);
+    const results = plantData.filter(plant => {
+      for (let i = 0; i < shapesQ.length; i++) {
+        if (plant.lf_shape === shapesQ[i]) return true;
+      }
+      return false;
+    });
+
     this.setState(prevState => ({ ...prevState, searchResults: results }));
   };
 
@@ -85,20 +85,23 @@ class App extends React.Component<Props, State> {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
+    const { searchQuery } = this.state;
+    const { shapes } = searchQuery;
+    const newQuery = { ...searchQuery };
 
     switch (trait) {
       case 'shape':
+        // console.log(`to handleChange: shapes: ${name} value: ${value}`);
+        newQuery.shapes = { ...shapes, [name]: value };
         this.setState(
           prevState => ({
             ...prevState,
-            searchQuery: {
-              ...prevState.searchQuery,
-              shapes: { ...prevState.searchQuery.shapes, [name]: value }
-            }
+            searchQuery: newQuery
           }),
-          this.handleSearchChange()
+          this.handleSearchChange(newQuery)
         );
         break;
+
       case 'arrangement':
         this.setState(prevState => ({
           ...prevState,
