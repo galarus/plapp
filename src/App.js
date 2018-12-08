@@ -62,20 +62,39 @@ class App extends React.Component<Props, State> {
         parasite: false
       }
     },
-    searchResults: plantData
+    searchResults: []
   };
 
   handleSearchChange = (newQuery: SearchQuery) => {
-    const { shapes } = newQuery;
+    const { shapes, arrangements, forms } = newQuery;
+
     const shapesQ = Object.entries(shapes)
       .filter(shape => shape[1])
       .map(shape => shape[0]);
+    const arrangementsQ = Object.entries(arrangements)
+      .filter(arrangement => arrangement[1])
+      .map(arrangement => arrangement[0]);
+    arrangementsQ.push('none');
+    console.log(arrangementsQ);
+    const formsQ = Object.entries(forms)
+      .filter(form => form[1])
+      .map(form => form[0]);
 
     const results = plantData.filter(plant => {
+      let shapeResult = false;
+      let arrangementResult = false;
+      let formResult = false;
+
       for (let i = 0; i < shapesQ.length; i++) {
-        if (plant.lf_shape === shapesQ[i]) return true;
+        if (plant.lf_shape === shapesQ[i]) shapeResult = true;
       }
-      return false;
+      for (let i = 0; i < arrangementsQ.length; i++) {
+        if (plant.lf_arngmt === arrangementsQ[i]) arrangementResult = true;
+      }
+      for (let i = 0; i < formsQ.length; i++) {
+        if (plant.form === formsQ[i]) formResult = true;
+      }
+      return shapeResult && arrangementResult && formResult;
     });
 
     this.setState(prevState => ({ ...prevState, searchResults: results }));
@@ -86,12 +105,11 @@ class App extends React.Component<Props, State> {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
     const { searchQuery } = this.state;
-    const { shapes } = searchQuery;
+    const { shapes, arrangements, forms } = searchQuery;
     const newQuery = { ...searchQuery };
 
     switch (trait) {
       case 'shape':
-        // console.log(`to handleChange: shapes: ${name} value: ${value}`);
         newQuery.shapes = { ...shapes, [name]: value };
         this.setState(
           prevState => ({
@@ -103,25 +121,27 @@ class App extends React.Component<Props, State> {
         break;
 
       case 'arrangement':
-        this.setState(prevState => ({
-          ...prevState,
-          searchQuery: {
-            ...prevState.searchQuery,
-
-            arrangements: { ...prevState.searchQuery.arrangements, [name]: value }
-          }
-        }));
+        newQuery.arrangements = { ...arrangements, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
         break;
+
       case 'form':
-        this.setState(prevState => ({
-          ...prevState,
-          searchQuery: {
-            ...prevState.searchQuery,
-
-            forms: { ...prevState.searchQuery.forms, [name]: value }
-          }
-        }));
+        newQuery.forms = { ...forms, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
         break;
+
       default:
         break;
     }

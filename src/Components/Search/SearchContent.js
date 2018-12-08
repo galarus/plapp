@@ -56,7 +56,7 @@ function SearchContent(props: Props) {
           <input
             name="ovate"
             type="checkbox"
-            checked={shapes.ovate || false}
+            checked={shapes.ovate}
             onChange={onSearchChange('shape')}
           />
         </div>
