@@ -10,9 +10,9 @@ function AboutBtn(props: Props) {
   return (
     <div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         right: '10%',
-        top: '-11%',
+        top: '1%',
         boxShadow: '10em'
       }}
       role="button"

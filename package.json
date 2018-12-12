@@ -8,7 +8,9 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-list": "^0.8.10",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "typeface-quicksand": "^0.0.54",
+    "typeface-roboto": "^0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",

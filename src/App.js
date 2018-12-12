@@ -75,7 +75,6 @@ class App extends React.Component<Props, State> {
       .filter(arrangement => arrangement[1])
       .map(arrangement => arrangement[0]);
     arrangementsQ.push('none');
-    console.log(arrangementsQ);
     const formsQ = Object.entries(forms)
       .filter(form => form[1])
       .map(form => form[0]);
