@@ -44,7 +44,7 @@ class PlantFooter extends React.Component<Props, State> {
               <PlantList searchResults={searchResults} key={searchResults.length} />
             </div>
           ) : (
-            <p>There are no plants matching your given search criteria.</p>
+            <span>There are no plants matching your given search criteria.</span>
           )}
         </div>
       </div>
