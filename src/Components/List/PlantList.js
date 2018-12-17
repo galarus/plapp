@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import * as ReactList from 'react-list';
 import PlantItemModal from './PlantItemModal';
 import './PlantList.css';
 import type { PlantObject } from '../../plant_data';
@@ -127,7 +126,7 @@ class PlantList extends React.Component<Props, State> {
             fontFamily: 'Roboto'
           }}
         >
-          <ReactList itemRenderer={this.renderItem} length={plants.length} type="uniform" />
+          {plants.map((plant, i) => this.renderItem(i, plant.jepson_code))}
         </div>
 
         {viewingPlant && (
