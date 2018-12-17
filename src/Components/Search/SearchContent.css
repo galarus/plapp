@@ -1,0 +1,45 @@
+.search-content {
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 10em;
+  margin-top: 1em;
+  width: 70vw;
+  height: 50vh;
+  overflow: auto;
+  padding: 0.2em 2em 2em 2em;
+  background-color: #4fa2be;
+  border-width: 2px;
+  border-style: inset;
+}
+
+.form-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-item {
+  flex: 1;
+  min-width: 50%;
+  height: auto;
+  padding: 5px;
+}
+
+.form-title {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .form-content {
+    display: block;
+  }
+  .form-item {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
