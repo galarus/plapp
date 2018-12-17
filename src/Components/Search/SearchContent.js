@@ -17,7 +17,8 @@ type Arrangements = {
   basal: boolean,
   whirled: boolean,
   alternate: boolean,
-  opposite: boolean
+  opposite: boolean,
+  none: boolean
 };
 type Forms = {
   grass: boolean,
@@ -52,7 +53,6 @@ function SearchContent(props: Props) {
           <b>
             <i>ovate:</i>
           </b>
-          <p>ergseg srtg sg wth eyjeyhdfgh q4gt adfwyh rths hsrths r</p>
         </div>
         <div className="form-item">
           <input
@@ -155,6 +155,17 @@ function SearchContent(props: Props) {
             <i>basal: </i>
           </b>
           Arising from the base of the stem.
+        </div>
+        <div className="form-item">
+          <input
+            name="none"
+            type="checkbox"
+            checked={arrangements.none}
+            onChange={onSearchChange('arrangement')}
+          />
+          <b>
+            <i>none </i>
+          </b>
         </div>
       </form>
       <h3 className="form-title">Form</h3>

@@ -19,7 +19,8 @@ type Arrangements = {
   basal: boolean,
   whirled: boolean,
   alternate: boolean,
-  opposite: boolean
+  opposite: boolean,
+  none: boolean
 };
 type Forms = {
   grass: boolean,
@@ -53,7 +54,8 @@ class App extends React.Component<Props, State> {
         basal: false,
         whirled: false,
         alternate: false,
-        opposite: false
+        opposite: false,
+        none: false
       },
       forms: {
         grass: false,
@@ -62,22 +64,32 @@ class App extends React.Component<Props, State> {
         parasite: false
       }
     },
-    searchResults: []
+    searchResults: plantData
   };
 
   handleSearchChange = (newQuery: SearchQuery) => {
     const { shapes, arrangements, forms } = newQuery;
 
-    const shapesQ = Object.entries(shapes)
+    let shapesQ = Object.entries(shapes)
       .filter(shape => shape[1])
       .map(shape => shape[0]);
-    const arrangementsQ = Object.entries(arrangements)
+    if (shapesQ.length === 0) {
+      shapesQ = Object.entries(shapes).map(shape => shape[0]);
+    }
+
+    let arrangementsQ = Object.entries(arrangements)
       .filter(arrangement => arrangement[1])
       .map(arrangement => arrangement[0]);
-    arrangementsQ.push('none');
-    const formsQ = Object.entries(forms)
+    if (arrangementsQ.length === 0) {
+      arrangementsQ = Object.entries(arrangements).map(arrangement => arrangement[0]);
+    }
+
+    let formsQ = Object.entries(forms)
       .filter(form => form[1])
       .map(form => form[0]);
+    if (formsQ.length === 0) {
+      formsQ = Object.entries(forms).map(form => form[0]);
+    }
 
     const results = plantData.filter(plant => {
       let shapeResult = false;
