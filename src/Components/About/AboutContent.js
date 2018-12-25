@@ -31,7 +31,9 @@ class AboutContent extends React.Component<Props, State> {
                 padding: '0px 40px',
                 border: '1px dashed black',
                 borderRadius: '2em',
-                backgroundColor: 'rgba(255, 140, 100, 0.55)'
+                backgroundColor: 'rgba(255, 140, 100, 0.8)',
+                position: 'fixed',
+                zIndex: 2
               }}
             >
               <div style={{ opacity: '1' }}>
