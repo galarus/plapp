@@ -1,28 +1,26 @@
 // @flow
-import * as React from 'react';
-import './PlantHeader.css';
+// import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
+
+const HeaderTitle = styled.h2({
+  textAlign: 'left',
+  color: '#55E6C1',
+  margin: '1%',
+  padding: '0vh 5vw'
+});
 
 const PlantHeader = () => (
   <div className="App">
     <div
       style={{
-        backgroundColor: '#98EC37',
         width: '100%',
         overflow: 'hidden',
-        opacity: '0.666',
         height: '3em'
       }}
     >
-      <h2
-        style={{
-          textAlign: 'left',
-          color: '#023B57',
-          margin: '1%',
-          padding: '0vh 5vw'
-        }}
-      >
-        Pläpp
-      </h2>
+      <HeaderTitle>Pläpp</HeaderTitle>
     </div>
   </div>
 );

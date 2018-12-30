@@ -1,6 +1,20 @@
 // @flow
 import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import AboutBtn from './AboutBtn';
+
+const AboutContainer = styled.div(props => ({
+  width: '60%',
+  margin: '0% 12%',
+  padding: '0px 40px',
+  border: '1px dashed black',
+  borderRadius: '2em',
+  backgroundColor: `hsla(${props.theme.georgiaPeach}, 1)`,
+  position: 'fixed',
+  zIndex: 2
+}));
 
 type Props = *;
 type State = {
@@ -8,7 +22,7 @@ type State = {
 };
 class AboutContent extends React.Component<Props, State> {
   state = {
-    show: true
+    show: false
   };
 
   toggleShowAbout = () => {
@@ -24,18 +38,7 @@ class AboutContent extends React.Component<Props, State> {
         <AboutBtn toggleShowAbout={this.toggleShowAbout} />
         <div>
           {show && (
-            <div
-              style={{
-                width: '60%',
-                margin: '0% 12%',
-                padding: '0px 40px',
-                border: '1px dashed black',
-                borderRadius: '2em',
-                backgroundColor: 'rgba(255, 140, 100, 0.8)',
-                position: 'fixed',
-                zIndex: 2
-              }}
-            >
+            <AboutContainer>
               <div style={{ opacity: '1' }}>
                 <span
                   role="button"
@@ -64,7 +67,7 @@ class AboutContent extends React.Component<Props, State> {
                   show species that match your selections.
                 </p>
               </div>
-            </div>
+            </AboutContainer>
           )}
         </div>
       </div>
