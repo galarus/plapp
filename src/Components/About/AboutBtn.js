@@ -11,8 +11,8 @@ function AboutBtn(props: Props) {
     <div
       style={{
         position: 'fixed',
-        right: '10%',
-        top: '1%',
+        right: '1em',
+        top: '0.5em',
         boxShadow: '10em'
       }}
       role="button"

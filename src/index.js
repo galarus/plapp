@@ -30,12 +30,8 @@ const ThemedApp = () => (
           margin: 0;
           padding: 0;
           font-family: 'Quicksand';
-          background-color: hsl(209, 23.5%, 22.5%);
-          background-repeat: no-repeat;
           height: 100%;
           width: 100vw;
-          background-size: cover;
-          background-position: center;
           overflow: hidden;
         }
       `}

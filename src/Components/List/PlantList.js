@@ -85,7 +85,7 @@ class PlantList extends React.Component<Props, State> {
     const plants = this.sortList();
 
     return (
-      <div>
+      <div style={{ maxHeight: '67vh', overflow: 'auto' }}>
         <div className="header-container">
           <div
             role="button"

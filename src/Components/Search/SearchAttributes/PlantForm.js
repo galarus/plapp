@@ -31,17 +31,15 @@ class PlantForm extends React.Component<Props, State> {
   render() {
     const { forms, onSearchChange } = this.props;
     const { show } = this.state;
-    const shoulddisplay = show
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `;
+    const shoulddisplay =
+      !show &&
+      css`
+        display: none;
+      `;
     return (
       <div>
         <h3 className="form-title" onClick={this.toggleShow}>
-          Form
+          {show ? 'Form -' : 'Form +'}
         </h3>
         <form className="form-content" css={shoulddisplay}>
           <div className="form-item">

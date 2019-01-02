@@ -4,13 +4,6 @@ import PlantList from '../List/PlantList';
 import './PlantFooter.css';
 import type { PlantObject } from '../../plant_data';
 
-type Props = {
-  searchResults: Array<PlantObject>
-};
-type State = {
-  searching: boolean
-};
-
 class PlantFooter extends React.Component<Props, State> {
   state = {
     searching: false

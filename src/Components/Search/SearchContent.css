@@ -4,7 +4,7 @@
   margin-right: 10em;
   margin-top: 1em;
   width: 100vw;
-  height: 50vh;
+  height: 100vh;
   overflow: auto;
   padding: 0.2em 2em 2em 2em;
   background-color: #4fa2be;
@@ -28,6 +28,7 @@
 
 .form-title {
   width: 100%;
+  margin-bottom: 1.5em;
 }
 
 @media (max-width: 777px) {

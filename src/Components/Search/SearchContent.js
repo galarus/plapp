@@ -20,14 +20,14 @@ type Props = {
 
 const SearchContainer = styled.div`
   text-align: left;
-  margin-left: 5%;
+  margin-left: 1em;
   margin-right: 10em;
   margin-top: 1em;
-  width: 70vw;
-  height: 50vh;
+  width: 80vw;
+  height: 67vh;
   overflow: auto;
   padding: 0.2em 2em 2em 2em;
-  background-color: hsla(${props => props.theme.ebonyClay}, 1);
+  background-color: hsla(${props => props.theme.ebonyClay}, 0);
   color: hsl(${props => props.theme.gallery});
   border-width: 1px;
 `;

@@ -36,17 +36,15 @@ class LeafArrangement extends React.Component<Props, State> {
   render() {
     const { arrangements, onSearchChange } = this.props;
     const { show } = this.state;
-    const shoulddisplay = show
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `;
+    const shoulddisplay =
+      !show &&
+      css`
+        display: none;
+      `;
     return (
       <div>
         <h3 className="form-title" onClick={this.toggleShow}>
-          Leaf Arrangement
+          {show ? 'Leaf Arrangement -' : 'Leaf Arrangement +'}
         </h3>
 
         <form className="form-content" css={shoulddisplay}>

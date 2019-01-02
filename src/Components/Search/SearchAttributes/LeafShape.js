@@ -4,10 +4,6 @@ import * as React from 'react';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import '../SearchContent.css';
-import SvgArrangementAlternate from '../../svg/SvgArrangementAlternate';
-import SvgArrangementOpposite from '../../svg/SvgArrangementOpposite';
-import SvgArrangementBasal from '../../svg/SvgArrangementBasal';
-import SvgArrangementWhirled from '../../svg/SvgArrangementWhirled';
 
 type Shapes = {
   ovate: boolean,
@@ -37,17 +33,15 @@ class LeafShape extends React.Component<Props, State> {
   render() {
     const { shapes, onSearchChange } = this.props;
     const { show } = this.state;
-    const shoulddisplay = show
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `;
+    const shoulddisplay =
+      !show &&
+      css`
+        display: none;
+      `;
     return (
       <div>
         <h3 className="form-title" onClick={this.toggleShow}>
-          Leaf Shape
+          {show ? 'Leaf Shape -' : 'Leaf Shape +'}
         </h3>
         <form className="form-content" css={shoulddisplay}>
           <div className="form-item">

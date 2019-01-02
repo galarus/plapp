@@ -1,12 +1,28 @@
 // @flow
 import * as React from 'react';
-import './App.css';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import plantData from './plant_data';
 import PlantHeader from './Components/Header/PlantHeader';
-import PlantFooter from './Components/Footer/PlantFooter';
+import FooterButton from './Components/Footer/FooterButton';
 import AboutContent from './Components/About/AboutContent';
 import SearchContent from './Components/Search/SearchContent';
+import PlantList from './Components/List/PlantList';
+import './Components/Footer/PlantFooter.css';
 import type { PlantObject } from './plant_data';
+
+// styled app container div
+const AppContainer = styled.div`
+  text-align: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: hsl(${props => props.theme.shipsOfficer});
+  background-repeat: no-repeat;
+`;
 
 type Shapes = {
   ovate: boolean,
@@ -37,7 +53,8 @@ type SearchQuery = {
 type Props = *;
 type State = {
   searchResults: Array<PlantObject>,
-  searchQuery: SearchQuery
+  searchQuery: SearchQuery,
+  searching: boolean
 };
 
 class App extends React.Component<Props, State> {
@@ -64,7 +81,14 @@ class App extends React.Component<Props, State> {
         parasite: false
       }
     },
-    searchResults: plantData
+    searchResults: plantData,
+    searching: true
+  };
+
+  toggleSearch = () => {
+    this.setState(prevState => ({
+      searching: !prevState.searching
+    }));
   };
 
   handleSearchChange = (newQuery: SearchQuery) => {
@@ -159,9 +183,9 @@ class App extends React.Component<Props, State> {
   };
 
   render() {
-    const { searchResults, searchQuery } = this.state;
+    const { searchResults, searchQuery, searching } = this.state;
     return (
-      <div className="App">
+      <AppContainer>
         <div>
           <PlantHeader />
           <div
@@ -172,11 +196,15 @@ class App extends React.Component<Props, State> {
             }}
           >
             <AboutContent />
-            <SearchContent onSearchChange={this.handleChange} searchQuery={searchQuery} />
+            {searching ? (
+              <SearchContent onSearchChange={this.handleChange} searchQuery={searchQuery} />
+            ) : (
+              <PlantList searchResults={searchResults} key={searchResults.length} />
+            )}
+            <FooterButton onClick={this.toggleSearch}> Show Results </FooterButton>
           </div>
-          <PlantFooter searchResults={searchResults} />
         </div>
-      </div>
+      </AppContainer>
     );
   }
 }
