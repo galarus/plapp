@@ -9,7 +9,6 @@ import FooterButton from './Components/Footer/FooterButton';
 import AboutContent from './Components/About/AboutContent';
 import SearchContent from './Components/Search/SearchContent';
 import PlantList from './Components/List/PlantList';
-import './Components/Footer/PlantFooter.css';
 import type { PlantObject } from './plant_data';
 
 // styled app container div

@@ -14,12 +14,14 @@ import 'typeface-quicksand';
 const theme = {
   ebonyClay: '209, 30%, 19%',
   madison: '210, 29%, 24%',
+  fallingStar: '#CAD3C8',
   shipsOfficer: '209, 23.5%, 22.5%',
   sasquachSocks: '342, 96.9%, 62.4%',
   georgiaPeach: '0, 97.2%, 72.0%',
   pineGlade: '67, 37%, 63.9%',
   sweetGarden: '46, 74%, 62%',
-  gallery: '0, 0%, 93%'
+  gallery: '0, 0%, 93%',
+  ming: '191, 41%, 34%'
 };
 
 const ThemedApp = () => (

@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
-import PlantItemModal from './PlantItemModal';
-import './PlantList.css';
+import PlantItemModal from './PlantItemModal/PlantItemModal';
 import type { PlantObject } from '../../plant_data';
+import PlantListItem from './PlantListItem';
+import PlantListHeader from './PlantListHeader';
 
 type Props = {
   searchResults: Array<PlantObject>
@@ -51,9 +52,8 @@ class PlantList extends React.Component<Props, State> {
     const plant = plants[index];
     console.log('rendering list');
     return (
-      <div
+      <PlantListItem
         key={key}
-        className="row-container"
         role="button"
         tabIndex="-1"
         onKeyDown={this.openViewModal(plant)}
@@ -63,7 +63,7 @@ class PlantList extends React.Component<Props, State> {
         <div>{plant.lf_shape}</div>
         <div>{plant.lf_arngmt}</div>
         <div>{plant.form}</div>
-      </div>
+      </PlantListItem>
     );
   };
 
@@ -86,7 +86,7 @@ class PlantList extends React.Component<Props, State> {
 
     return (
       <div style={{ maxHeight: '67vh', overflow: 'auto' }}>
-        <div className="header-container">
+        <PlantListHeader>
           <div
             role="button"
             tabIndex="-1"
@@ -119,7 +119,7 @@ class PlantList extends React.Component<Props, State> {
           >
             leaf form
           </div>
-        </div>
+        </PlantListHeader>
         <div
           style={{
             backgroundColor: 'blue-gray',

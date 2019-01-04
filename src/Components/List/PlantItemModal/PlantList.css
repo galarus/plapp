@@ -1,0 +1,32 @@
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #43b500;
+  color: #;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  background-color: rgba(144, 233, 91, 0.5);
+  color: black;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #43b500;
+  color: white;
+}

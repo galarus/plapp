@@ -11,9 +11,9 @@ const FooterButton = styled.div`
   margin-right: auto;
   margin-left: auto;
   /* give it dimensions */
-  height: 5em;
-  line-height: 5em;
-  width: 20em;
+  height: 13vh;
+  line-height: 13vh;
+  width: 25vw;
   bottom: 1.5em;
   background-color: hsla(${props => props.theme.sasquachSocks}, 1);
 `;
