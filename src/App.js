@@ -200,7 +200,9 @@ class App extends React.Component<Props, State> {
             ) : (
               <PlantList searchResults={searchResults} key={searchResults.length} />
             )}
-            <FooterButton onClick={this.toggleSearch}> Show Results </FooterButton>
+            <FooterButton onClick={this.toggleSearch}>
+              {searching ? 'Show Results' : 'Return'}
+            </FooterButton>
           </div>
         </div>
       </AppContainer>
