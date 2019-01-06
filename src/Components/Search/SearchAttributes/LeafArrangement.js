@@ -10,6 +10,7 @@ import SvgArrangementBasal from '../../svg/SvgArrangementBasal';
 import SvgArrangementWhirled from '../../svg/SvgArrangementWhirled';
 import FormContent from './Form/FormContent';
 import FormTitle from './Form/FormTitle';
+import FormItem from './Form/FormItem';
 
 type Arrangements = {
   basal: boolean,
@@ -38,19 +39,14 @@ class LeafArrangement extends React.Component<Props, State> {
   render() {
     const { arrangements, onSearchChange } = this.props;
     const { show } = this.state;
-    const shoulddisplay =
-      !show &&
-      css`
-        display: none;
-      `;
     return (
       <div>
         <FormTitle onClick={this.toggleShow}>
           {show ? 'Leaf Arrangement -' : 'Leaf Arrangement +'}
         </FormTitle>
 
-        <FormContent css={shoulddisplay}>
-          <div className="form-item">
+        <FormContent display={show}>
+          <FormItem>
             <input
               name="alternate"
               type="checkbox"
@@ -63,8 +59,8 @@ class LeafArrangement extends React.Component<Props, State> {
             </b>
             One leaf, branch, or flower part attaches at each point or node on the stem, and leaves
             alternate direction, to a greater or lesser degree, along the stem.
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input
               name="opposite"
               type="checkbox"
@@ -76,9 +72,9 @@ class LeafArrangement extends React.Component<Props, State> {
               <i> opposite: </i>
             </b>
             Two leaves, branches, or flower parts attach at each point or node on the stem.
-          </div>
+          </FormItem>
 
-          <div className="form-item">
+          <FormItem>
             <input
               name="whirled"
               type="checkbox"
@@ -91,8 +87,8 @@ class LeafArrangement extends React.Component<Props, State> {
             </b>
             Three or more leaves, branches, or flower parts attach at each point or node on the
             stem.
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input
               name="basal"
               type="checkbox"
@@ -104,8 +100,8 @@ class LeafArrangement extends React.Component<Props, State> {
               <i>basal: </i>
             </b>
             Arising from the base of the stem.
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input
               name="none"
               type="checkbox"
@@ -115,7 +111,7 @@ class LeafArrangement extends React.Component<Props, State> {
             <b>
               <i>none </i>
             </b>
-          </div>
+          </FormItem>
         </FormContent>
       </div>
     );

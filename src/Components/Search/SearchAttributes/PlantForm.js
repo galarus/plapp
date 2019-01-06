@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import '../SearchContent.css';
 import FormContent from './Form/FormContent';
 import FormTitle from './Form/FormTitle';
+import FormItem from './Form/FormItem';
 
 type Forms = {
   grass: boolean,
@@ -33,34 +34,29 @@ class PlantForm extends React.Component<Props, State> {
   render() {
     const { forms, onSearchChange } = this.props;
     const { show } = this.state;
-    const shoulddisplay =
-      !show &&
-      css`
-        display: none;
-      `;
     return (
       <div>
         <FormTitle onClick={this.toggleShow}>{show ? 'Form -' : 'Form +'}</FormTitle>
-        <FormContent css={shoulddisplay}>
-          <div className="form-item">
+        <FormContent display={show}>
+          <FormItem>
             <input name="grass" type="checkbox" checked={forms.grass} onChange={onSearchChange} />
             <b>
               <i> grass:</i>
             </b>
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input name="forb" type="checkbox" checked={forms.forb} onChange={onSearchChange} />
             <b>
               <i> forb:</i>
             </b>
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input name="tree" type="checkbox" checked={forms.tree} onChange={onSearchChange} />
             <b>
               <i> tree:</i>
             </b>
-          </div>
-          <div className="form-item">
+          </FormItem>
+          <FormItem>
             <input
               name="parasite"
               type="checkbox"
@@ -70,7 +66,7 @@ class PlantForm extends React.Component<Props, State> {
             <b>
               <i> parasite:</i>
             </b>
-          </div>
+          </FormItem>
         </FormContent>
       </div>
     );
