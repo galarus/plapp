@@ -42,12 +42,9 @@ type Props = {
 const SearchContainer = styled.div`
   text-align: left;
   margin-left: 0.2em;
-  margin-right: 10em;
-  margin-top: 1em;
   width: 75vw;
   height: 67vh;
   overflow: auto;
-  padding: 0.2em 2em 2em 2em;
   background-color: hsla(${props => props.theme.ebonyClay}, 0);
   color: hsl(${props => props.theme.gallery});
 `;

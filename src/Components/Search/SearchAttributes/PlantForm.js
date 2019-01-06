@@ -4,6 +4,8 @@ import * as React from 'react';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import '../SearchContent.css';
+import FormContent from './Form/FormContent';
+import FormTitle from './Form/FormTitle';
 
 type Forms = {
   grass: boolean,
@@ -38,10 +40,8 @@ class PlantForm extends React.Component<Props, State> {
       `;
     return (
       <div>
-        <h3 className="form-title" onClick={this.toggleShow}>
-          {show ? 'Form -' : 'Form +'}
-        </h3>
-        <form className="form-content" css={shoulddisplay}>
+        <FormTitle onClick={this.toggleShow}>{show ? 'Form -' : 'Form +'}</FormTitle>
+        <FormContent css={shoulddisplay}>
           <div className="form-item">
             <input name="grass" type="checkbox" checked={forms.grass} onChange={onSearchChange} />
             <b>
@@ -71,7 +71,7 @@ class PlantForm extends React.Component<Props, State> {
               <i> parasite:</i>
             </b>
           </div>
-        </form>
+        </FormContent>
       </div>
     );
   }

@@ -2,8 +2,9 @@
 import * as React from 'react';
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import styled from '@emotion/styled';
 import '../SearchContent.css';
+import FormContent from './Form/FormContent';
+import FormTitle from './Form/FormTitle';
 
 type Shapes = {
   ovate: boolean,
@@ -40,10 +41,8 @@ class LeafShape extends React.Component<Props, State> {
       `;
     return (
       <div>
-        <h3 className="form-title" onClick={this.toggleShow}>
-          {show ? 'Leaf Shape -' : 'Leaf Shape +'}
-        </h3>
-        <form className="form-content" css={shoulddisplay}>
+        <FormTitle onClick={this.toggleShow}>{show ? 'Leaf Shape -' : 'Leaf Shape +'}</FormTitle>
+        <FormContent css={shoulddisplay}>
           <div className="form-item">
             <input name="ovate" type="checkbox" checked={shapes.ovate} onChange={onSearchChange} />
             <b>
@@ -94,7 +93,7 @@ class LeafShape extends React.Component<Props, State> {
               <i> linear:</i>
             </b>
           </div>
-        </form>
+        </FormContent>
       </div>
     );
   }

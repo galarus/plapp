@@ -8,6 +8,8 @@ import SvgArrangementAlternate from '../../svg/SvgArrangementAlternate';
 import SvgArrangementOpposite from '../../svg/SvgArrangementOpposite';
 import SvgArrangementBasal from '../../svg/SvgArrangementBasal';
 import SvgArrangementWhirled from '../../svg/SvgArrangementWhirled';
+import FormContent from './Form/FormContent';
+import FormTitle from './Form/FormTitle';
 
 type Arrangements = {
   basal: boolean,
@@ -43,11 +45,11 @@ class LeafArrangement extends React.Component<Props, State> {
       `;
     return (
       <div>
-        <h3 className="form-title" onClick={this.toggleShow}>
+        <FormTitle onClick={this.toggleShow}>
           {show ? 'Leaf Arrangement -' : 'Leaf Arrangement +'}
-        </h3>
+        </FormTitle>
 
-        <form className="form-content" css={shoulddisplay}>
+        <FormContent css={shoulddisplay}>
           <div className="form-item">
             <input
               name="alternate"
@@ -114,7 +116,7 @@ class LeafArrangement extends React.Component<Props, State> {
               <i>none </i>
             </b>
           </div>
-        </form>
+        </FormContent>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import * as React from 'react';
 import './PlantList.css';
 import styled from '@emotion/styled';
 /** @jsx jsx */
-import { jsx, css, keyframes } from '@emotion/core';
+import { jsx, keyframes } from '@emotion/core';
 
 import type { PlantObject } from '../../../plant_data';
 
@@ -40,7 +40,36 @@ const ModalContent = styled.div`
   animation-name: ${zoom};
   animation-duration: 0.4s;
 `;
+const ModalHeader = styled.div`
+  padding: 2px 16px;
+  background-color: hsla(${props => props.theme.keppel}, 1);
+  color: hsla(${props => props.theme.gallery}, 1);
+`;
 
+const ModalBody = styled.div`
+  padding: 2px 16px;
+  background-color: hsla(${props => props.theme.oasisStream}, 1);
+  color: hsla(${props => props.theme.shipsOfficer}, 1);
+`;
+
+const ModalFooter = styled.div`
+  padding: 2px 16px;
+  background-color: hsla(${props => props.theme.keppel}, 1);
+  color: hsla(${props => props.theme.gallery}, 1);
+`;
+const Close = styled.span`
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+  :hover,
+  :focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
 type Props = {
   show: boolean,
   onClose: *,
@@ -57,19 +86,13 @@ class PlantItemModal extends React.Component<Props, State> {
     return (
       <PlantModal style={show === true ? { display: 'block' } : { display: 'none' }}>
         <ModalContent>
-          <div className="modal-header">
-            <span
-              className="close"
-              onClick={onClose}
-              onKeyDown={onClose}
-              role="button"
-              tabIndex="-1"
-            >
+          <ModalHeader>
+            <Close onClick={onClose} onKeyDown={onClose} role="button" tabIndex="-1">
               &times;
-            </span>
+            </Close>
             <h2>{`${plant.plant_genus} ${plant.plant_species}`}</h2>
-          </div>
-          <div className="modal-body">
+          </ModalHeader>
+          <ModalBody>
             {plant.abundance && `abundance: ${plant.abundance} `}
             <br />
             {plant.form && ` form: ${plant.form}`}
@@ -78,10 +101,10 @@ class PlantItemModal extends React.Component<Props, State> {
             <br />
             {plant.aroma && `aroma: ${plant.aroma}`}
             <br />
-          </div>
-          <div className="modal-footer">
+          </ModalBody>
+          <ModalFooter>
             <h3>{`${plant.species_code} ${plant.jepson_code}`}</h3>
-          </div>
+          </ModalFooter>
         </ModalContent>
       </PlantModal>
     );

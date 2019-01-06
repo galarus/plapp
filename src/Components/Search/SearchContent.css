@@ -1,17 +1,3 @@
-.search-content {
-  text-align: left;
-  margin-left: 5%;
-  margin-right: 10em;
-  margin-top: 1em;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  padding: 0.2em 2em 2em 2em;
-  background-color: #4fa2be;
-  border-width: 2px;
-  border-style: inset;
-}
-
 .form-content {
   width: 100%;
   display: flex;

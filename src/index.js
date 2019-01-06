@@ -21,7 +21,9 @@ const theme = {
   pineGlade: '67, 37%, 63.9%',
   sweetGarden: '46, 74%, 62%',
   gallery: '0, 0%, 93%',
-  ming: '191, 41%, 34%'
+  ming: '191, 41%, 34%',
+  keppel: '168, 36%, 52%',
+  oasisStream: '168, 68%, 76%'
 };
 
 const ThemedApp = () => (
