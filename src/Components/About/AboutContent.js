@@ -22,7 +22,7 @@ type State = {
 };
 class AboutContent extends React.Component<Props, State> {
   state = {
-    show: false
+    show: true
   };
 
   toggleShowAbout = () => {
