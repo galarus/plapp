@@ -16,6 +16,19 @@ const AboutContainer = styled.div(props => ({
   zIndex: 2
 }));
 
+const AboutClose = styled.span({
+  float: 'right',
+  marginRight: '6vw',
+  marginTop: '6vh',
+  borderRadius: '10px',
+  width: '20px',
+  height: '20px',
+  border: '1px solid black',
+  ':hover': {
+    cursor: 'pointer'
+  }
+});
+
 type Props = *;
 type State = {
   show: boolean
@@ -40,23 +53,14 @@ class AboutContent extends React.Component<Props, State> {
           {show && (
             <AboutContainer>
               <div style={{ opacity: '1' }}>
-                <span
+                <AboutClose
                   role="button"
                   tabIndex="-1"
                   onKeyDown={this.toggleShowAbout}
                   onClick={this.toggleShowAbout}
-                  style={{
-                    float: 'right',
-                    marginRight: '6vw',
-                    marginTop: '6vh',
-                    borderRadius: '10px',
-                    width: '20px',
-                    height: '20px',
-                    border: '1px solid black'
-                  }}
                 >
                   &#10005;
-                </span>
+                </AboutClose>
                 <br />
                 <br />
 

@@ -11,6 +11,9 @@ const FooterButton = styled.div`
   line-height: 13vh;
   width: 25vw;
   background-color: hsla(${props => props.theme.sasquachSocks}, 1);
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export default FooterButton;

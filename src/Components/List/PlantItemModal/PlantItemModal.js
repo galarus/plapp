@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import './PlantList.css';
 import styled from '@emotion/styled';
 /** @jsx jsx */
 import { jsx, keyframes } from '@emotion/core';
