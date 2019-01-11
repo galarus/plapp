@@ -54,7 +54,7 @@ function SearchContent(props: Props) {
   const { shapes, forms, arrangements } = searchQuery;
   return (
     <SearchContainer>
-      <LeafShape shapes={shapes} onSearchChange={onSearchChange('shapes')} />
+      <LeafShape shapes={shapes} onSearchChange={onSearchChange('shape')} />
       <LeafArrangement arrangements={arrangements} onSearchChange={onSearchChange('arrangement')} />
       <PlantForm forms={forms} onSearchChange={onSearchChange('form')} />
     </SearchContainer>
