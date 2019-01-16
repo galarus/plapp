@@ -6,7 +6,14 @@ import styled from '@emotion/styled';
 import LeafShape from './SearchAttributes/LeafShape';
 import LeafArrangement from './SearchAttributes/LeafArrangement';
 import PlantForm from './SearchAttributes/PlantForm';
+import LeafType from './SearchAttributes/LeafType';
 
+
+type LeafTypes = {
+  broadleaf: boolean,
+  none: boolean,
+  needles: boonlean
+};
 type Forms = {
   grass: boolean,
   forb: boolean,
@@ -32,7 +39,8 @@ type Shapes = {
 type SearchQuery = {
   forms: Forms,
   arrangements: Arrangements,
-  shapes: Shapes
+  shapes: Shapes,
+  leafTypes: LeafTypes
 };
 type Props = {
   searchQuery: SearchQuery,
@@ -51,12 +59,13 @@ const SearchContainer = styled.div`
 
 function SearchContent(props: Props) {
   const { searchQuery, onSearchChange } = props;
-  const { shapes, forms, arrangements } = searchQuery;
+  const { leafTypes, shapes, forms, arrangements } = searchQuery;
   return (
     <SearchContainer>
       <LeafShape shapes={shapes} onSearchChange={onSearchChange('shape')} />
       <LeafArrangement arrangements={arrangements} onSearchChange={onSearchChange('arrangement')} />
       <PlantForm forms={forms} onSearchChange={onSearchChange('form')} />
+      <LeafType leafTypes={leafTypes} onSearchChange={onSearchChange('leafType')} />
     </SearchContainer>
   );
 }

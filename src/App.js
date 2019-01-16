@@ -22,13 +22,18 @@ const AppContainer = styled.div`
   background-color: hsl(${props => props.theme.shipsOfficer});
   background-repeat: no-repeat;
 `;
-
+type LeafTypes = {
+  broadleaf: boolean,
+  none: boolean,
+  needles: boonlean
+}
 type Shapes = {
   ovate: boolean,
   lanceolate: boolean,
   obovate: boolean,
   cordate: boolean,
-  linear: boolean
+  linear: boolean,
+  needle: boolean
 };
 type Arrangements = {
   basal: boolean,
@@ -59,12 +64,18 @@ type State = {
 class App extends React.Component<Props, State> {
   state = {
     searchQuery: {
+      leafTypes:{
+        broadleaf: false,
+        none: false,
+        needles: false
+      },
       shapes: {
         ovate: false,
         lanceolate: false,
         obovate: false,
         cordate: false,
-        linear: false
+        linear: false,
+        needle: false
       },
       arrangements: {
         basal: false,
@@ -91,7 +102,14 @@ class App extends React.Component<Props, State> {
   };
 
   handleSearchChange = (newQuery: SearchQuery) => {
-    const { shapes, arrangements, forms } = newQuery;
+    const { shapes, arrangements, forms, leafTypes } = newQuery;
+
+    let leafTypesQ = Object.entries(leafTypes)
+      .filter(leafType => leafType[1])
+      .map(leafType => leafType[0]);
+    if (leafTypesQ.length === 0) {
+      leafTypesQ = Object.entries(leafTypes).map(leafType => leafType[0]);
+    }
 
     let shapesQ = Object.entries(shapes)
       .filter(shape => shape[1])
@@ -115,10 +133,14 @@ class App extends React.Component<Props, State> {
     }
 
     const results = plantData.filter(plant => {
+      let leafTypeResult = false;
       let shapeResult = false;
       let arrangementResult = false;
       let formResult = false;
 
+      for (let i = 0; i < leafTypesQ.length; i++) {
+        if (plant.lf_type === leafTypesQ[i]) leafTypeResult = true;
+      }
       for (let i = 0; i < shapesQ.length; i++) {
         if (plant.lf_shape === shapesQ[i]) shapeResult = true;
       }
@@ -128,7 +150,7 @@ class App extends React.Component<Props, State> {
       for (let i = 0; i < formsQ.length; i++) {
         if (plant.form === formsQ[i]) formResult = true;
       }
-      return shapeResult && arrangementResult && formResult;
+      return leafTypeResult && shapeResult && arrangementResult && formResult;
     });
 
     this.setState(prevState => ({ ...prevState, searchResults: results }));
@@ -139,10 +161,21 @@ class App extends React.Component<Props, State> {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
     const { searchQuery } = this.state;
-    const { shapes, arrangements, forms } = searchQuery;
+    const { leafTypes, shapes, arrangements, forms } = searchQuery;
     const newQuery = { ...searchQuery };
 
     switch (trait) {
+      case 'leafType':
+        newQuery.leafTypes = { ...leafTypes, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
+        break;
+
       case 'shape':
         newQuery.shapes = { ...shapes, [name]: value };
         this.setState(
