@@ -10,6 +10,7 @@ import AboutContent from './Components/About/AboutContent';
 import SearchContent from './Components/Search/SearchContent';
 import PlantList from './Components/List/PlantList';
 import type { PlantObject } from './plant_data';
+import type { SearchQuery } from './SearchQuery';
 
 // styled app container div
 const AppContainer = styled.div`
@@ -22,37 +23,6 @@ const AppContainer = styled.div`
   background-color: hsl(${props => props.theme.shipsOfficer});
   background-repeat: no-repeat;
 `;
-type LeafTypes = {
-  broadleaf: boolean,
-  none: boolean,
-  needles: boonlean
-}
-type Shapes = {
-  ovate: boolean,
-  lanceolate: boolean,
-  obovate: boolean,
-  cordate: boolean,
-  linear: boolean,
-  needle: boolean
-};
-type Arrangements = {
-  basal: boolean,
-  whirled: boolean,
-  alternate: boolean,
-  opposite: boolean,
-  none: boolean
-};
-type Forms = {
-  grass: boolean,
-  forb: boolean,
-  tree: boolean,
-  parasite: boolean
-};
-type SearchQuery = {
-  forms: Forms,
-  arrangements: Arrangements,
-  shapes: Shapes
-};
 
 type Props = *;
 type State = {
@@ -64,7 +34,7 @@ type State = {
 class App extends React.Component<Props, State> {
   state = {
     searchQuery: {
-      leafTypes:{
+      leafTypes: {
         broadleaf: false,
         none: false,
         needles: false

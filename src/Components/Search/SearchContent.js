@@ -8,40 +8,8 @@ import LeafArrangement from './SearchAttributes/LeafArrangement';
 import PlantForm from './SearchAttributes/PlantForm';
 import LeafType from './SearchAttributes/LeafType';
 
+import type { SearchQuery } from '../../SearchQuery';
 
-type LeafTypes = {
-  broadleaf: boolean,
-  none: boolean,
-  needles: boonlean
-};
-type Forms = {
-  grass: boolean,
-  forb: boolean,
-  tree: boolean,
-  parasite: boolean
-};
-type Arrangements = {
-  basal: boolean,
-  whirled: boolean,
-  alternate: boolean,
-  opposite: boolean,
-  none: boolean
-};
-
-type Shapes = {
-  ovate: boolean,
-  lanceolate: boolean,
-  obovate: boolean,
-  cordate: boolean,
-  linear: boolean
-};
-
-type SearchQuery = {
-  forms: Forms,
-  arrangements: Arrangements,
-  shapes: Shapes,
-  leafTypes: LeafTypes
-};
 type Props = {
   searchQuery: SearchQuery,
   onSearchChange: *
@@ -62,10 +30,10 @@ function SearchContent(props: Props) {
   const { leafTypes, shapes, forms, arrangements } = searchQuery;
   return (
     <SearchContainer>
-      <LeafShape shapes={shapes} onSearchChange={onSearchChange('shape')} />
       <LeafArrangement arrangements={arrangements} onSearchChange={onSearchChange('arrangement')} />
-      <PlantForm forms={forms} onSearchChange={onSearchChange('form')} />
+      <LeafShape shapes={shapes} onSearchChange={onSearchChange('shape')} />
       <LeafType leafTypes={leafTypes} onSearchChange={onSearchChange('leafType')} />
+      <PlantForm forms={forms} onSearchChange={onSearchChange('form')} />
     </SearchContainer>
   );
 }

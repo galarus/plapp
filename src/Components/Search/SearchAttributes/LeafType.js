@@ -1,18 +1,16 @@
 // @flow
 import * as React from 'react';
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import styled from '@emotion/styled';
-import '../SearchContent.css';
+import { jsx } from '@emotion/core';
 import FormContent from './Form/FormContent';
 import FormTitle from './Form/FormTitle';
 import FormItem from './Form/FormItem';
 
 type LeafTypes = {
-    broadleaf: boolean,
-    none: boolean,
-    needles: boonlean
-  };
+  broadleaf: boolean,
+  none: boolean,
+  needles: boolean
+};
 type Props = {
   leafTypes: LeafTypes,
   onSearchChange: *
@@ -36,26 +34,7 @@ class LeafType extends React.Component<Props, State> {
     return (
       <div>
         <FormTitle onClick={this.toggleShow}>{show ? 'Leaf Types -' : 'Leaf Types +'}</FormTitle>
-        <FormContent display={show}>
-          <FormItem>
-            <input name="broadleaf" type="checkbox" checked={leafTypes.broadleaf} onChange={onSearchChange} />
-            <b>
-              <i> broadleaf:</i>
-            </b>
-          </FormItem>
-          <FormItem>
-            <input name="needles" type="checkbox" checked={leafTypes.needles} onChange={onSearchChange} />
-            <b>
-              <i> needles:</i>
-            </b>
-          </FormItem>
-          <FormItem>
-            <input name="none" type="checkbox" checked={leafTypes.none} onChange={onSearchChange} />
-            <b>
-              <i> none:</i>
-            </b>
-          </FormItem>
-        </FormContent>
+        <FormContent display={show} />
       </div>
     );
   }
