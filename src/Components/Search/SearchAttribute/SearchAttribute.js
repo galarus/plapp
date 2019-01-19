@@ -4,23 +4,16 @@ import * as React from 'react';
 import { jsx } from '@emotion/core';
 import FormContent from './Form/FormContent';
 import FormTitle from './Form/FormTitle';
-import FormItem from './Form/FormItem';
 
-type Forms = {
-  grass: boolean,
-  forb: boolean,
-  tree: boolean,
-  parasite: boolean
-};
 type Props = {
-  forms: Forms,
-  onSearchChange: *
+  title: string,
+  children: *
 };
 type State = {
   show: boolean
 };
 
-class PlantForm extends React.Component<Props, State> {
+class SearchAttribute extends React.Component<Props, State> {
   state = { show: false };
 
   toggleShow = () => {
@@ -30,15 +23,16 @@ class PlantForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { forms, onSearchChange } = this.props;
+    const { title, children } = this.props;
     const { show } = this.state;
     return (
       <div>
-        <FormTitle onClick={this.toggleShow}>{show ? 'Form -' : 'Form +'}</FormTitle>
-        <FormContent display={show} />
+        <FormTitle onClick={this.toggleShow}>{show ? `${title} -` : `${title} +`}</FormTitle>
+
+        <FormContent display={show}>{children}</FormContent>
       </div>
     );
   }
 }
 
-export default PlantForm;
+export default SearchAttribute;

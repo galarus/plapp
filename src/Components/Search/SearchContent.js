@@ -3,17 +3,12 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import LeafShape from './SearchAttributes/LeafShape';
-import LeafArrangement from './SearchAttributes/LeafArrangement';
-import PlantForm from './SearchAttributes/PlantForm';
-import LeafType from './SearchAttributes/LeafType';
 
+import SearchAttribute from './SearchAttribute/SearchAttribute';
+import FormItem from './SearchAttribute/Form/FormItem';
 import type { SearchQuery } from '../../SearchQuery';
 
-type Props = {
-  searchQuery: SearchQuery,
-  onSearchChange: *
-};
+import attributeItems from './AttributeItems';
 
 const SearchContainer = styled.div`
   text-align: left;
@@ -25,15 +20,64 @@ const SearchContainer = styled.div`
   color: hsl(${props => props.theme.gallery});
 `;
 
+type Props = {
+  searchQuery: SearchQuery,
+  onSearchChange: *
+};
 function SearchContent(props: Props) {
   const { searchQuery, onSearchChange } = props;
   const { leafTypes, shapes, forms, arrangements } = searchQuery;
+  const { leafArrangementItems, leafShapeItems, leafTypeItems, plantFormItems } = attributeItems;
   return (
     <SearchContainer>
-      <LeafArrangement arrangements={arrangements} onSearchChange={onSearchChange('arrangement')} />
-      <LeafShape shapes={shapes} onSearchChange={onSearchChange('shape')} />
-      <LeafType leafTypes={leafTypes} onSearchChange={onSearchChange('leafType')} />
-      <PlantForm forms={forms} onSearchChange={onSearchChange('form')} />
+      <SearchAttribute title="Leaf Arrangement">
+        {leafArrangementItems.map(item => (
+          <FormItem
+            key={item.name}
+            attribute={arrangements}
+            inputName={item.name}
+            SvgItem={item.svg}
+            description={item.description}
+            onSearchChange={onSearchChange('arrangement')}
+          />
+        ))}
+      </SearchAttribute>
+      <SearchAttribute title="Leaf Shape">
+        {leafShapeItems.map(item => (
+          <FormItem
+            key={item.name}
+            attribute={shapes}
+            inputName={item.name}
+            SvgItem={item.svg}
+            description={item.description}
+            onSearchChange={onSearchChange('shape')}
+          />
+        ))}
+      </SearchAttribute>
+      <SearchAttribute title="Leaf Type">
+        {leafTypeItems.map(item => (
+          <FormItem
+            key={item.name}
+            attribute={leafTypes}
+            inputName={item.name}
+            SvgItem={item.svg}
+            description={item.description}
+            onSearchChange={onSearchChange('leafType')}
+          />
+        ))}
+      </SearchAttribute>
+      <SearchAttribute title="Form">
+        {plantFormItems.map(item => (
+          <FormItem
+            key={item.name}
+            attribute={forms}
+            inputName={item.name}
+            SvgItem={item.svg}
+            description={item.description}
+            onSearchChange={onSearchChange('form')}
+          />
+        ))}
+      </SearchAttribute>
     </SearchContainer>
   );
 }

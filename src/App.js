@@ -3,12 +3,12 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import plantData from './plant_data';
 import PlantHeader from './Components/Header/PlantHeader';
 import FooterButton from './Components/Footer/FooterButton';
 import AboutContent from './Components/About/AboutContent';
 import SearchContent from './Components/Search/SearchContent';
 import PlantList from './Components/List/PlantList';
+import plantData from './plant_data';
 import type { PlantObject } from './plant_data';
 import type { SearchQuery } from './SearchQuery';
 
