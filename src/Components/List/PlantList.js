@@ -64,6 +64,9 @@ class PlantList extends React.Component<Props, State> {
         <div>{plant.lf_arngmt}</div>
         <div>{plant.form}</div>
         <div>{plant.lf_type}</div>
+        <div>{plant.lf_group}</div>
+        <div>{plant.habitat}</div>
+        <div>{plant.petals}</div>
       </PlantListItem>
     );
   };
@@ -127,6 +130,30 @@ class PlantList extends React.Component<Props, State> {
             onClick={this.toggleTraitSort('lf_type')}
           >
             leaf type
+          </div>
+          <div
+            role="button"
+            tabIndex="-6"
+            onKeyDown={this.toggleTraitSort('lf_group')}
+            onClick={this.toggleTraitSort('lf_group')}
+          >
+            leaf group
+          </div>
+          <div
+            role="button"
+            tabIndex="-7"
+            onKeyDown={this.toggleTraitSort('habitat')}
+            onClick={this.toggleTraitSort('habitat')}
+          >
+            habitat
+          </div>
+          <div
+            role="button"
+            tabIndex="-8"
+            onKeyDown={this.toggleTraitSort('petals')}
+            onClick={this.toggleTraitSort('petals')}
+          >
+            petals
           </div>
         </PlantListHeader>
         <div

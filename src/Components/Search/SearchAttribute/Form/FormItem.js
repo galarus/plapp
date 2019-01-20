@@ -3,6 +3,7 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
+import type { AttributeItem } from '../../AttributeItems';
 
 const FormItemForm = styled.form`
   flex: 1;
@@ -15,23 +16,23 @@ const FormItemForm = styled.form`
     margin: 0 0 0.5em 0;
   }
 `;
+
 type Props = {
-  inputName: string,
+  item: AttributeItem,
   attribute: *,
-  SvgItem: *,
-  description: string,
   onSearchChange: *
 };
 
 function FormItem(props: Props) {
-  const { attribute, inputName, SvgItem, description, onSearchChange } = props;
-  const checked = attribute[inputName];
+  const { attribute, onSearchChange, item } = props;
+  const { name, svg, description } = item;
+  const checked = attribute[name];
   return (
     <FormItemForm>
-      <input name={inputName} type="checkbox" checked={checked} onChange={onSearchChange} />
-      {<SvgItem.type style={{ transform: 'scale(3, 3)', margin: '0.5em 1em' }} />}
+      <input name={name} type="checkbox" checked={checked} onChange={onSearchChange} />
+      {<svg.type style={{ transform: 'scale(3, 3)', margin: '0.5em 1em' }} />}
       <b>
-        <i> {inputName}: </i>
+        <i> {name}: </i>
       </b>
       {description}
     </FormItemForm>

@@ -24,9 +24,37 @@ type Forms = {
   tree: boolean,
   parasite: boolean
 };
+
+type Groups = {
+  none: boolean,
+  simple: boolean,
+  'compound palmate': boolean,
+  'compound pinnate': boolean
+};
+
+type Habitats = {
+  'mixed evergreen forest': boolean,
+  'coastal prairie': boolean,
+  grassland: boolean,
+  'chronically wet areas': boolean,
+  'redwood forest': boolean,
+  disturbed: boolean
+};
+
+type Petals = {
+  none: boolean,
+  fused: boolean,
+  three: boolean,
+  five: boolean,
+  six: boolean
+};
+
 export type SearchQuery = {
   forms: Forms,
   arrangements: Arrangements,
   shapes: Shapes,
-  leafTypes: LeafTypes
+  leafTypes: LeafTypes,
+  groups: Groups,
+  habitats: Habitats,
+  petals: Petals
 };

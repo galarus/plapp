@@ -59,6 +59,27 @@ class App extends React.Component<Props, State> {
         forb: false,
         tree: false,
         parasite: false
+      },
+      groups: {
+        none: false,
+        simple: false,
+        'compound palmate': false,
+        'compound pinnate': false
+      },
+      habitats: {
+        'mixed evergreen forest': false,
+        'coastal prairie': false,
+        grassland: false,
+        'chronically wet areas': false,
+        'redwood forest': false,
+        disturbed: false
+      },
+      petals: {
+        none: false,
+        fused: false,
+        three: false,
+        five: false,
+        six: false
       }
     },
     searchResults: plantData,
@@ -71,57 +92,45 @@ class App extends React.Component<Props, State> {
     }));
   };
 
+  getAttrQ = (attributeQueryObject: Object): Array<string> => {
+    let result = Object.entries(attributeQueryObject)
+      .filter(attr => attr[1])
+      .map(attr => attr[0]);
+    if (result.length === 0) {
+      result = Object.entries(attributeQueryObject).map(attr => attr[0]);
+      result.map(i => console.log(i));
+    }
+    return result;
+  };
+
+  getAttrFilterResult = (plant: PlantObject, attr: string, attrQ: Array<string>): boolean => {
+    for (let i = 0; i < attrQ.length; i++) {
+      if (plant[attr] === attrQ[i]) return true;
+    }
+    return false;
+  };
+
   handleSearchChange = (newQuery: SearchQuery) => {
-    const { shapes, arrangements, forms, leafTypes } = newQuery;
+    const { shapes, arrangements, forms, leafTypes, groups, habitats, petals } = newQuery;
 
-    let leafTypesQ = Object.entries(leafTypes)
-      .filter(leafType => leafType[1])
-      .map(leafType => leafType[0]);
-    if (leafTypesQ.length === 0) {
-      leafTypesQ = Object.entries(leafTypes).map(leafType => leafType[0]);
-    }
+    const leafTypesQ = this.getAttrQ(leafTypes);
+    const shapesQ = this.getAttrQ(shapes);
+    const arrangementsQ = this.getAttrQ(arrangements);
+    const formsQ = this.getAttrQ(forms);
+    const groupsQ = this.getAttrQ(groups);
+    const habitatsQ = this.getAttrQ(habitats);
+    const petalsQ = this.getAttrQ(petals);
 
-    let shapesQ = Object.entries(shapes)
-      .filter(shape => shape[1])
-      .map(shape => shape[0]);
-    if (shapesQ.length === 0) {
-      shapesQ = Object.entries(shapes).map(shape => shape[0]);
-    }
-
-    let arrangementsQ = Object.entries(arrangements)
-      .filter(arrangement => arrangement[1])
-      .map(arrangement => arrangement[0]);
-    if (arrangementsQ.length === 0) {
-      arrangementsQ = Object.entries(arrangements).map(arrangement => arrangement[0]);
-    }
-
-    let formsQ = Object.entries(forms)
-      .filter(form => form[1])
-      .map(form => form[0]);
-    if (formsQ.length === 0) {
-      formsQ = Object.entries(forms).map(form => form[0]);
-    }
-
-    const results = plantData.filter(plant => {
-      let leafTypeResult = false;
-      let shapeResult = false;
-      let arrangementResult = false;
-      let formResult = false;
-
-      for (let i = 0; i < leafTypesQ.length; i++) {
-        if (plant.lf_type === leafTypesQ[i]) leafTypeResult = true;
-      }
-      for (let i = 0; i < shapesQ.length; i++) {
-        if (plant.lf_shape === shapesQ[i]) shapeResult = true;
-      }
-      for (let i = 0; i < arrangementsQ.length; i++) {
-        if (plant.lf_arngmt === arrangementsQ[i]) arrangementResult = true;
-      }
-      for (let i = 0; i < formsQ.length; i++) {
-        if (plant.form === formsQ[i]) formResult = true;
-      }
-      return leafTypeResult && shapeResult && arrangementResult && formResult;
-    });
+    const results = plantData.filter(
+      plant =>
+        this.getAttrFilterResult(plant, 'lf_type', leafTypesQ) &&
+        this.getAttrFilterResult(plant, 'lf_shape', shapesQ) &&
+        this.getAttrFilterResult(plant, 'lf_arngmt', arrangementsQ) &&
+        this.getAttrFilterResult(plant, 'form', formsQ) &&
+        this.getAttrFilterResult(plant, 'lf_group', groupsQ) &&
+        this.getAttrFilterResult(plant, 'habitat', habitatsQ) &&
+        this.getAttrFilterResult(plant, 'petals', petalsQ)
+    );
 
     this.setState(prevState => ({ ...prevState, searchResults: results }));
   };
@@ -131,7 +140,7 @@ class App extends React.Component<Props, State> {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
     const { searchQuery } = this.state;
-    const { leafTypes, shapes, arrangements, forms } = searchQuery;
+    const { leafTypes, shapes, arrangements, forms, groups, habitats, petals } = searchQuery;
     const newQuery = { ...searchQuery };
 
     switch (trait) {
@@ -178,7 +187,38 @@ class App extends React.Component<Props, State> {
           this.handleSearchChange(newQuery)
         );
         break;
+      case 'group':
+        newQuery.groups = { ...groups, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
+        break;
 
+      case 'habitat':
+        newQuery.habitats = { ...habitats, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
+        break;
+
+      case 'petals':
+        newQuery.petals = { ...petals, [name]: value };
+        this.setState(
+          prevState => ({
+            ...prevState,
+            searchQuery: newQuery
+          }),
+          this.handleSearchChange(newQuery)
+        );
+        break;
       default:
         break;
     }

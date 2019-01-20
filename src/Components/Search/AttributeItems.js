@@ -20,7 +20,10 @@ type ArrangementItems = {
   leafArrangementItems: Array<AttributeItem>,
   leafShapeItems: Array<AttributeItem>,
   leafTypeItems: Array<AttributeItem>,
-  plantFormItems: Array<AttributeItem>
+  plantFormItems: Array<AttributeItem>,
+  leafGroupItems: Array<AttributeItem>,
+  plantHabitatItems: Array<AttributeItem>,
+  plantPetalsItems: Array<AttributeItem>
 };
 
 const arrangementItems: ArrangementItems = {
@@ -55,9 +58,35 @@ const arrangementItems: ArrangementItems = {
   ],
   leafShapeItems: [
     {
+      name: 'ovate',
+      svg: <SvgShapeOvate />,
+      description:
+        'Oval, egg-shaped, with a tapering point and the widest portion near the petiole.'
+    },
+    {
+      name: 'lanceolate',
+      svg: <SvgShapeLanceolate />,
+      description: 'Long, wider in the middle, shaped like a lance tip.'
+    },
+    {
       name: 'cordate',
       svg: <SvgShapeCordate />,
       description: 'Heart-shaped, with the petiole or stem attached to the notch.'
+    },
+    {
+      name: 'obovate',
+      svg: <SvgShapeObovate />,
+      description: 'Teardrop-shaped, stem attaches to the tapering end; reversed ovate.'
+    },
+    {
+      name: 'linear',
+      svg: <SvgShapeLinear />,
+      description: 'Long and very narrow like a blade of grass.'
+    },
+    {
+      name: 'needle',
+      svg: <span />,
+      description: 'Long and very narrow like a blade of grass.'
     }
   ],
   leafTypeItems: [
@@ -65,11 +94,122 @@ const arrangementItems: ArrangementItems = {
       name: 'broadleaf',
       svg: <span />,
       description: ' '
+    },
+    {
+      name: 'needles',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'frond',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'none',
+      svg: <span />,
+      description: ' '
     }
   ],
   plantFormItems: [
     {
       name: 'grass',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'forb',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'tree',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'parasite',
+      svg: <span />,
+      description: ' '
+    }
+  ],
+  leafGroupItems: [
+    {
+      name: 'simple',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'compound palmate',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'compound pinnate',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'none',
+      svg: <span />,
+      description: ' '
+    }
+  ],
+  plantHabitatItems: [
+    {
+      name: 'mixed evergreen forest',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'coastal prairie',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'grassland',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'chronically wet areas',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'redwood forest',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'disturbed',
+      svg: <span />,
+      description: ' '
+    }
+  ],
+  plantPetalsItems: [
+    {
+      name: 'none',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'fused',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'three',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'five',
+      svg: <span />,
+      description: ' '
+    },
+    {
+      name: 'six',
       svg: <span />,
       description: ' '
     }
