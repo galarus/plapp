@@ -110,7 +110,7 @@ class App extends React.Component<Props, State> {
     return false;
   };
 
-  handleSearchChange = (newQuery: SearchQuery) => {
+  filterResults = (newQuery: SearchQuery) => {
     const { shapes, arrangements, forms, leafTypes, groups, habitats, petals } = newQuery;
 
     const leafTypesQ = this.getAttrQ(leafTypes);
@@ -132,7 +132,7 @@ class App extends React.Component<Props, State> {
         this.getAttrFilterResult(plant, 'petals', petalsQ)
     );
 
-    this.setState(prevState => ({ ...prevState, searchResults: results }));
+    this.setState(prevState => ({ ...prevState, searchResults: results, searchQuery: newQuery }));
   };
 
   handleChange = (trait: string) => (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -146,82 +146,29 @@ class App extends React.Component<Props, State> {
     switch (trait) {
       case 'leafType':
         newQuery.leafTypes = { ...leafTypes, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
-
       case 'shape':
         newQuery.shapes = { ...shapes, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
-
       case 'arrangement':
         newQuery.arrangements = { ...arrangements, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
-
       case 'form':
         newQuery.forms = { ...forms, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
       case 'group':
         newQuery.groups = { ...groups, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
-
       case 'habitat':
         newQuery.habitats = { ...habitats, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
-
       case 'petals':
         newQuery.petals = { ...petals, [name]: value };
-        this.setState(
-          prevState => ({
-            ...prevState,
-            searchQuery: newQuery
-          }),
-          this.handleSearchChange(newQuery)
-        );
         break;
       default:
         break;
     }
+    this.filterResults(newQuery);
   };
 
   render() {
