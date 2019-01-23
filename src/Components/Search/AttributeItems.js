@@ -16,7 +16,7 @@ export type AttributeItem = {
   description: string
 };
 
-type ArrangementItems = {
+type AttributeItems = {
   leafArrangementItems: Array<AttributeItem>,
   leafShapeItems: Array<AttributeItem>,
   leafTypeItems: Array<AttributeItem>,
@@ -26,7 +26,7 @@ type ArrangementItems = {
   plantPetalsItems: Array<AttributeItem>
 };
 
-const arrangementItems: ArrangementItems = {
+const attributeItems: AttributeItems = {
   leafArrangementItems: [
     {
       name: 'alternate',
@@ -215,4 +215,5 @@ const arrangementItems: ArrangementItems = {
     }
   ]
 };
-export default arrangementItems;
+
+export default attributeItems;

@@ -1,9 +1,18 @@
 // @flow
 import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import PlantItemModal from './PlantItemModal/PlantItemModal';
-import type { PlantObject } from '../../plant_data';
+import type { PlantObject } from '../../Store/plant_data';
 import PlantListItem from './PlantListItem';
 import PlantListHeader from './PlantListHeader';
+
+const PlantListContainer = styled.div`
+  height: 67vh;
+  overflow: auto;
+  display: ${props => props.show && 'none'};
+`;
 
 type Props = {
   searchResults: Array<PlantObject>
@@ -46,7 +55,7 @@ class PlantList extends React.Component<Props, State> {
     return plants;
   };
 
-  renderItem = (index: number, key: string) => {
+  renderItem(index: number, key: string) {
     const { searchResults } = this.props;
     const plants = searchResults;
     const plant = plants[index];
@@ -69,7 +78,7 @@ class PlantList extends React.Component<Props, State> {
         <div>{plant.petals}</div>
       </PlantListItem>
     );
-  };
+  }
 
   toggleTraitSort = (attr: string) => (e: Event) => {
     e.stopPropagation();
@@ -89,7 +98,7 @@ class PlantList extends React.Component<Props, State> {
     const plants = this.sortList();
 
     return (
-      <div style={{ height: '67vh', overflow: 'auto' }}>
+      <PlantListContainer show={this.props.show}>
         <PlantListHeader>
           <div
             role="button"
@@ -168,7 +177,7 @@ class PlantList extends React.Component<Props, State> {
         {viewingPlant && (
           <PlantItemModal show={viewing} plant={viewingPlant} onClose={this.closeViewModal} />
         )}
-      </div>
+      </PlantListContainer>
     );
   }
 }

@@ -8,6 +8,7 @@ module.exports = function override(config, env) {
   }
   if (env === 'development') {
     newConfig = injectBabelPlugin(['emotion', { sourceMap: true }], config);
+    newConfig = injectBabelPlugin('transform-decorators-legacy', newConfig);
   }
   return newConfig;
 };

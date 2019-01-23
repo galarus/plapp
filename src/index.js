@@ -1,10 +1,11 @@
 // @flow
-import * as React from 'react';
 import ReactDOM from 'react-dom';
 /** @jsx jsx */
 import { jsx, Global, css } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
-
+import { Provider } from 'mobx-react';
+// import DevTools from 'mobx-react-devtools';
+import PlantStore from './Store/PlantStore';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'typeface-roboto';
@@ -27,21 +28,23 @@ const theme = {
 };
 
 const ThemedApp = () => (
-  <ThemeProvider theme={theme}>
-    <Global
-      styles={css`
-        body {
-          margin: 0;
-          padding: 0;
-          font-family: 'Quicksand';
-          height: 100%;
-          width: 100vw;
-          overflow: hidden;
-        }
-      `}
-    />
-    <App />
-  </ThemeProvider>
+  <Provider plantStore={new PlantStore()}>
+    <ThemeProvider theme={theme}>
+      <Global
+        styles={css`
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand';
+            height: 100%;
+            width: 100vw;
+            overflow: hidden;
+          }
+        `}
+      />
+      <App />
+    </ThemeProvider>
+  </Provider>
 );
 
 const doc = document.getElementById('root');
