@@ -7,6 +7,7 @@ import PlantItemModal from './PlantItemModal/PlantItemModal';
 import type { PlantObject } from '../../Store/plant_data';
 import PlantListItem from './PlantListItem';
 import PlantListHeader from './PlantListHeader';
+import ListHeaderItem from './ListHeaderItem';
 
 const PlantListContainer = styled.div`
   height: 67vh;
@@ -63,20 +64,9 @@ class PlantList extends React.Component<Props, State> {
     return (
       <PlantListItem
         key={key}
-        role="button"
-        tabIndex="-1"
-        onKeyDown={this.openViewModal(plant)}
-        onClick={this.openViewModal(plant)}
-      >
-        <div>{`${plant.plant_genus} ${plant.plant_species}`}</div>
-        <div>{plant.lf_shape}</div>
-        <div>{plant.lf_arngmt}</div>
-        <div>{plant.form}</div>
-        <div>{plant.lf_type}</div>
-        <div>{plant.lf_group}</div>
-        <div>{plant.habitat}</div>
-        <div>{plant.petals}</div>
-      </PlantListItem>
+        viewFunction={this.openViewModal(plant)}
+        plant={plant}      
+      />
     );
   }
 
@@ -100,70 +90,20 @@ class PlantList extends React.Component<Props, State> {
     return (
       <PlantListContainer show={this.props.show}>
         <PlantListHeader>
-          <div
-            role="button"
-            tabIndex="-1"
-            onKeyDown={this.toggleTraitSort('plant_genus')}
-            onClick={this.toggleTraitSort('plant_genus')}
-          >
-            genus species
-          </div>
-          <div
-            role="button"
-            tabIndex="-2"
-            onKeyDown={this.toggleTraitSort('lf_shape')}
-            onClick={this.toggleTraitSort('lf_shape')}
-          >
-            leaf shape
-          </div>
-          <div
-            role="button"
-            tabIndex="-3"
-            onKeyDown={this.toggleTraitSort('lf_arngmt')}
-            onClick={this.toggleTraitSort('lf_arngmt')}
-          >
-            leaf arrangement
-          </div>
-          <div
-            role="button"
-            tabIndex="-4"
-            onKeyDown={this.toggleTraitSort('form')}
-            onClick={this.toggleTraitSort('form')}
-          >
-            leaf form
-          </div>
-          <div
-            role="button"
-            tabIndex="-5"
-            onKeyDown={this.toggleTraitSort('lf_type')}
-            onClick={this.toggleTraitSort('lf_type')}
-          >
-            leaf type
-          </div>
-          <div
-            role="button"
-            tabIndex="-6"
-            onKeyDown={this.toggleTraitSort('lf_group')}
-            onClick={this.toggleTraitSort('lf_group')}
-          >
-            leaf group
-          </div>
-          <div
-            role="button"
-            tabIndex="-7"
-            onKeyDown={this.toggleTraitSort('habitat')}
-            onClick={this.toggleTraitSort('habitat')}
-          >
-            habitat
-          </div>
-          <div
-            role="button"
-            tabIndex="-8"
-            onKeyDown={this.toggleTraitSort('petals')}
-            onClick={this.toggleTraitSort('petals')}
-          >
-            petals
-          </div>
+          <ListHeaderItem
+            title="genus species"
+            toggleFunction={this.toggleTraitSort('plant_genus')}
+          />
+          <ListHeaderItem title="leaf shape" toggleFunction={this.toggleTraitSort('lf_shape')} />
+          <ListHeaderItem
+            title="leaf arrangement"
+            toggleFunction={this.toggleTraitSort('lf_arngmt')}
+          />
+          <ListHeaderItem title="leaf form" toggleFunction={this.toggleTraitSort('form')} />
+          <ListHeaderItem title="leaf type" toggleFunction={this.toggleTraitSort('lf_type')} />
+          <ListHeaderItem title="leaf group" toggleFunction={this.toggleTraitSort('lf_group')} />
+          <ListHeaderItem title="habitat" toggleFunction={this.toggleTraitSort('habitat')} />
+          <ListHeaderItem title="petals" toggleFunction={this.toggleTraitSort('petals')} />
         </PlantListHeader>
         <div
           style={{

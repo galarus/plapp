@@ -74,40 +74,35 @@ type Props = {
   onClose: *,
   plant: PlantObject
 };
-type State = *;
 
-class PlantItemModal extends React.Component<Props, State> {
-  state = null;
+const PlantItemModal = (props: Props) => {
+  const { show, plant, onClose } = props;
 
-  render() {
-    const { show, plant, onClose } = this.props;
-
-    return (
-      <PlantModal style={show === true ? { display: 'block' } : { display: 'none' }}>
-        <ModalContent>
-          <ModalHeader>
-            <Close onClick={onClose} onKeyDown={onClose} role="button" tabIndex="-1">
-              &times;
-            </Close>
-            <h2>{`${plant.plant_genus} ${plant.plant_species}`}</h2>
-          </ModalHeader>
-          <ModalBody>
-            {plant.abundance && `abundance: ${plant.abundance} `}
-            <br />
-            {plant.form && ` form: ${plant.form}`}
-            <br />
-            {plant.habitat && `habitat: ${plant.habitat}`}
-            <br />
-            {plant.aroma && `aroma: ${plant.aroma}`}
-            <br />
-          </ModalBody>
-          <ModalFooter>
-            <h3>{`${plant.species_code} ${plant.jepson_code}`}</h3>
-          </ModalFooter>
-        </ModalContent>
-      </PlantModal>
-    );
-  }
-}
+  return (
+    <PlantModal style={show === true ? { display: 'block' } : { display: 'none' }}>
+      <ModalContent>
+        <ModalHeader>
+          <Close onClick={onClose} onKeyDown={onClose} role="button" tabIndex="-1">
+            &times;
+          </Close>
+          <h2>{`${plant.plant_genus} ${plant.plant_species}`}</h2>
+        </ModalHeader>
+        <ModalBody>
+          {plant.abundance && `abundance: ${plant.abundance} `}
+          <br />
+          {plant.form && ` form: ${plant.form}`}
+          <br />
+          {plant.habitat && `habitat: ${plant.habitat}`}
+          <br />
+          {plant.aroma && `aroma: ${plant.aroma}`}
+          <br />
+        </ModalBody>
+        <ModalFooter>
+          <h3>{`${plant.species_code} ${plant.jepson_code}`}</h3>
+        </ModalFooter>
+      </ModalContent>
+    </PlantModal>
+  );
+};
 
 export default PlantItemModal;

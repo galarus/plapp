@@ -36,10 +36,8 @@ class App extends React.Component {
     return (
       <AppContainer>
         <PlantHeader />
-
         <AppBody>
           <AboutContent />
-
           <SearchContent show={!searching} />
           <PlantList show={searching} searchResults={searchResults} />
           <FooterButton onClick={toggleSearch}>

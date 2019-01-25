@@ -1,8 +1,10 @@
 // @flow
 /** @jsx jsx */
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import type { PlantObject } from '../../Store/plant_data';
 
-const PlantListItem = styled.div`
+const ListItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 108, 57, 0);
@@ -31,4 +33,27 @@ const PlantListItem = styled.div`
     border-color: black;
   }
 `;
+
+type Props = {
+  viewFunction: *,
+  plant: PlantObject
+};
+
+const PlantListItem = (props: Props) => {
+  const { viewFunction, plant } = props;
+
+  return (
+    <ListItemContainer role="button" tabIndex="0" onKeyDown={viewFunction} onClick={viewFunction}>
+      <div>{`${plant.plant_genus} ${plant.plant_species}`}</div>
+      <div>{plant.lf_shape}</div>
+      <div>{plant.lf_arngmt}</div>
+      <div>{plant.form}</div>
+      <div>{plant.lf_type}</div>
+      <div>{plant.lf_group}</div>
+      <div>{plant.habitat}</div>
+      <div>{plant.petals}</div>
+    </ListItemContainer>
+  );
+};
+
 export default PlantListItem;
