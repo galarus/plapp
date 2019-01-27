@@ -25,7 +25,7 @@ const AppContainer = styled.div`
 const AppBody = styled.div`
   position: absolute;
   top: 10%;
-  left: 10%;
+  left: 5%;
 `;
 
 @inject('plantStore')

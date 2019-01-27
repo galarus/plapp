@@ -2,8 +2,19 @@
 import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import FormContent from './Form/FormContent';
+import styled from '@emotion/styled';
 import FormTitle from './Form/FormTitle';
+
+const FormContent = styled.div`
+  width: 100%;
+  display: ${props => (props.display ? 'none' : 'flex')};
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: hsla(${props => props.theme.ebonyClay}, 0.5);
+  @media (max-width: 777px) {
+    display: block;
+  }
+`;
 
 type Props = {
   title: string,

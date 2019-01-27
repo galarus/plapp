@@ -3,11 +3,11 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import type { AttributeItem } from '../../AttributeItems';
+import type { AttributeItem } from '../../../../Store/AttributeItems';
 
 const FormItemForm = styled.form`
   flex: 1;
-  min-width: 50%;
+  min-width: 40%;
   height: auto;
   padding: 5px;
 

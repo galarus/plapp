@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import PlantItemModal from './PlantItemModal/PlantItemModal';
 import type { PlantObject } from '../../Store/plant_data';
 import PlantListItem from './PlantListItem';
 import PlantListHeader from './PlantListHeader';
-import ListHeaderItem from './ListHeaderItem';
 
 const PlantListContainer = styled.div`
   height: 67vh;
@@ -16,7 +15,8 @@ const PlantListContainer = styled.div`
 `;
 
 type Props = {
-  searchResults: Array<PlantObject>
+  searchResults: Array<PlantObject>,
+  show: boolean
 };
 type State = {
   sortAttr: string,
@@ -26,7 +26,7 @@ type State = {
 };
 class PlantList extends React.Component<Props, State> {
   state = {
-    sortAttr: '',
+    sortAttr: 'plant_genus',
     sortDir: 0,
     viewing: true,
     viewingPlant: null
@@ -56,19 +56,13 @@ class PlantList extends React.Component<Props, State> {
     return plants;
   };
 
-  renderItem(index: number, key: string) {
-    const { searchResults } = this.props;
-    const plants = searchResults;
-    const plant = plants[index];
-    console.log('rendering list');
-    return (
-      <PlantListItem
-        key={key}
-        viewFunction={this.openViewModal(plant)}
-        plant={plant}      
-      />
-    );
-  }
+  renderItem = (plant: PlantObject) => (
+    <PlantListItem
+      key={plant.jepson_code.toString()}
+      viewFunction={this.openViewModal(plant)}
+      plant={plant}
+    />
+  );
 
   toggleTraitSort = (attr: string) => (e: Event) => {
     e.stopPropagation();
@@ -81,39 +75,21 @@ class PlantList extends React.Component<Props, State> {
     });
   };
 
-  listRef: ?ReactList;
-
   render() {
     const { viewing, viewingPlant } = this.state;
     const plants = this.sortList();
 
     return (
       <PlantListContainer show={this.props.show}>
-        <PlantListHeader>
-          <ListHeaderItem
-            title="genus species"
-            toggleFunction={this.toggleTraitSort('plant_genus')}
-          />
-          <ListHeaderItem title="leaf shape" toggleFunction={this.toggleTraitSort('lf_shape')} />
-          <ListHeaderItem
-            title="leaf arrangement"
-            toggleFunction={this.toggleTraitSort('lf_arngmt')}
-          />
-          <ListHeaderItem title="leaf form" toggleFunction={this.toggleTraitSort('form')} />
-          <ListHeaderItem title="leaf type" toggleFunction={this.toggleTraitSort('lf_type')} />
-          <ListHeaderItem title="leaf group" toggleFunction={this.toggleTraitSort('lf_group')} />
-          <ListHeaderItem title="habitat" toggleFunction={this.toggleTraitSort('habitat')} />
-          <ListHeaderItem title="petals" toggleFunction={this.toggleTraitSort('petals')} />
-        </PlantListHeader>
+        <PlantListHeader sortFunction={this.toggleTraitSort} />
         <div
           style={{
             backgroundColor: 'blue-gray',
             fontFamily: 'Roboto'
           }}
         >
-          {plants.map((plant, i) => this.renderItem(i, plant.jepson_code))}
+          {plants.map(plant => this.renderItem(plant))}
         </div>
-
         {viewingPlant && (
           <PlantItemModal show={viewing} plant={viewingPlant} onClose={this.closeViewModal} />
         )}

@@ -2,7 +2,7 @@
 import { observable, computed, action } from 'mobx';
 
 import plantData from './plant_data';
-import SearchUtils from './SearchUtils';
+import filterResults from './SearchUtils';
 import type { PlantObject } from './plant_data';
 import type { SearchQuery } from './SearchQuery';
 
@@ -59,10 +59,8 @@ class PlantStore {
     }
   };
 
-  utils = new SearchUtils();
-
   @computed get searchResults(): Array<PlantObject> {
-    return this.utils.filterResults(this.searchQuery, plantData);
+    return filterResults(this.searchQuery, plantData);
   }
 
   @action.bound

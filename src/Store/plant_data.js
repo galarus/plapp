@@ -1,5 +1,44 @@
 // @flow
-
+type LeafTypes = 
+ | 'broadleaf' 
+ | 'none' 
+ | 'needles' 
+type Shapes =
+ | 'ovate'
+ | 'lanceolate'
+ | 'obovate'
+ | 'cordate'
+ | 'linear'
+ | 'needle'
+type Arrangements = 
+ | 'basal'
+ | 'whirled' 
+ | 'alternate'
+ | 'opposite'
+ | 'none'
+type Forms = 
+ | 'grass'
+ | 'forb'
+ | 'tree'
+ | 'parasite'
+type Groups = 
+ | 'none'
+ | 'simple'
+ | 'compound palmate'
+ | 'compound pinnate'
+type Habitats = 
+ | 'mixed evergreen forest'
+ | 'coastal prairie'
+ | 'grassland'
+ | 'chronically wet areas'
+ | 'redwood forest'
+ | 'disturbed'
+type Petals = 
+ | 'none'
+ | 'fused'
+ | 'three'
+ | 'five'
+ | 'six'
 export type PlantObject = {
     "jepson_code": number,
     "species_code": string,
@@ -7,27 +46,26 @@ export type PlantObject = {
     "plant_genus": string,
     "plant_species": string,
     "abundance": string,
-    "form": string,
-    "habitat": string,
+    "form": Forms,
+    "habitat": Habitats,
     "aroma": string,
-    "lf_arngmt": string,
-    "lf_group": string,
-    "lf_shape": string,
+    "lf_arngmt": Arrangements,
+    "lf_group": Groups,
+    "lf_shape": Shapes,
     "lf_margin": string,
     "bark_texture": string,
     "fruit_type": string,
     "leaf_above": string,
     "lf_clr_below": string,
     "lf_stickiness": string,
-    "lf_type": string,
+    "lf_type": LeafTypes,
     "mature_fruit_clr": string, 
-    "petals": string,
+    "petals": Petals,
     "spines": string,
     "bark_color": string,
     "inflorescence": string,
     "origin": string
 }
-
 const plantData: Array<PlantObject> = [
   {
     "jepson_code": 12290,

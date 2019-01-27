@@ -8,8 +8,8 @@ const ListItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 108, 57, 0);
-  overflow: visible;
-  width: 75vw;
+  overflow: auto;
+  width: 90vw;
   margin: 0.2em;
   padding: 0em 2em 0em 0.1em;
   border-radius: 0.3em;

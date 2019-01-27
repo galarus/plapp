@@ -1,14 +1,14 @@
 // @flow
 import * as React from 'react';
-import SvgArrangementAlternate from '../svg/arrangements/SvgArrangementAlternate';
-import SvgArrangementOpposite from '../svg/arrangements/SvgArrangementOpposite';
-import SvgArrangementBasal from '../svg/arrangements/SvgArrangementBasal';
-import SvgArrangementWhirled from '../svg/arrangements/SvgArrangementWhirled';
-import SvgShapeCordate from '../svg/shapes/SvgShapeCordate';
-import SvgShapeLanceolate from '../svg/shapes/SvgShapeLanceolate';
-import SvgShapeLinear from '../svg/shapes/SvgShapeLinear';
-import SvgShapeObovate from '../svg/shapes/SvgShapeObovate';
-import SvgShapeOvate from '../svg/shapes/SvgShapeOvate';
+import SvgArrangementAlternate from '../Components/svg/arrangements/SvgArrangementAlternate';
+import SvgArrangementOpposite from '../Components/svg/arrangements/SvgArrangementOpposite';
+import SvgArrangementBasal from '../Components/svg/arrangements/SvgArrangementBasal';
+import SvgArrangementWhirled from '../Components/svg/arrangements/SvgArrangementWhirled';
+import SvgShapeCordate from '../Components/svg/shapes/SvgShapeCordate';
+import SvgShapeLanceolate from '../Components/svg/shapes/SvgShapeLanceolate';
+import SvgShapeLinear from '../Components/svg/shapes/SvgShapeLinear';
+import SvgShapeObovate from '../Components/svg/shapes/SvgShapeObovate';
+import SvgShapeOvate from '../Components/svg/shapes/SvgShapeOvate';
 
 export type AttributeItem = {
   name: string,
