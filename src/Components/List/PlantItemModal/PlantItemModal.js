@@ -3,7 +3,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 /** @jsx jsx */
 import { jsx, keyframes } from '@emotion/core';
-
 import type { PlantObject } from '../../../Store/plant_data';
 
 const PlantModal = styled.div`

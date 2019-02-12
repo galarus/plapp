@@ -1,7 +1,6 @@
 // @flow
-import * as React from 'react';
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import type { AttributeItem } from '../../../../Store/AttributeItems';
 
@@ -19,14 +18,13 @@ const FormItemForm = styled.form`
 
 type Props = {
   item: AttributeItem,
-  attribute: *,
-  onSearchChange: *
+  onSearchChange: *,
+  checked: boolean
 };
 
 function FormItem(props: Props) {
-  const { attribute, onSearchChange, item } = props;
+  const { onSearchChange, item, checked } = props;
   const { name, svg, description } = item;
-  const checked = attribute[name];
   return (
     <FormItemForm>
       <input name={name} type="checkbox" checked={checked} onChange={onSearchChange} />

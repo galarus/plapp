@@ -7,12 +7,12 @@ import FormTitle from './Form/FormTitle';
 
 const FormContent = styled.div`
   width: 100%;
-  display: ${props => (props.display ? 'none' : 'flex')};
+  display: ${props => (props.show ? 'flex' : 'none')};
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: hsla(${props => props.theme.ebonyClay}, 0.5);
   @media (max-width: 777px) {
-    display: block;
+    display: ${props => (props.show ? 'block' : 'none')};
   }
 `;
 
@@ -40,7 +40,7 @@ class SearchAttribute extends React.Component<Props, State> {
       <div>
         <FormTitle onClick={this.toggleShow}>{show ? `${title} -` : `${title} +`}</FormTitle>
 
-        <FormContent display={show}>{children}</FormContent>
+        <FormContent show={show}>{children}</FormContent>
       </div>
     );
   }

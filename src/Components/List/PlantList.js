@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import PlantItemModal from './PlantItemModal/PlantItemModal';
 import type { PlantObject } from '../../Store/plant_data';

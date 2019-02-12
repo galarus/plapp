@@ -24,11 +24,11 @@ const ListItemContainer = styled.div`
     font-size: 0.7em;
   }
 
-  :nth-child(odd) {
+  :nth-of-type(odd) {
     background-color: hsla(${props => props.theme.ebonyClay}, 0.8);
   }
 
-  :nth-child(odd) > div {
+  :nth-of-type(odd) > div {
     border: 1px;
     border-color: black;
   }

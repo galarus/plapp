@@ -30,7 +30,7 @@ const AppBody = styled.div`
 
 @inject('plantStore')
 @observer
-class App extends React.Component {
+class App extends React.Component<*, *> {
   render() {
     const { searchResults, searching, toggleSearch } = this.props.plantStore;
     return (

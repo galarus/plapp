@@ -1,7 +1,13 @@
 // @flow
 import type { PlantObject } from './plant_data';
-import type { SearchQuery } from './SearchQuery';
 
+type SearchQuery = {
+  [string]: {
+    [string]: boolean
+  }
+};
+
+// return array of the names of true attributes
 const getAttrQ = (attributeQueryObject: Object): Array<string> => {
   let result = Object.entries(attributeQueryObject)
     .filter(attr => attr[1])
@@ -12,6 +18,7 @@ const getAttrQ = (attributeQueryObject: Object): Array<string> => {
   return result;
 };
 
+// check if plant meets criteria for one attribute
 const checkHasAttr = (plant: PlantObject, attr: string, attrQ: Array<string>): boolean => {
   for (let i = 0; i < attrQ.length; i++) {
     if (plant[attr] === attrQ[i]) return true;
@@ -23,35 +30,19 @@ const filterResults = (
   newQuery: SearchQuery,
   plantData: Array<PlantObject>
 ): Array<PlantObject> => {
-  const { shapes, arrangements, forms, leafTypes, groups, habitats, petals } = newQuery;
-  const leafTypesQ = getAttrQ(leafTypes);
-  const leafShapesQ = getAttrQ(shapes);
-  const arrangementsQ = getAttrQ(arrangements);
-  const formsQ = getAttrQ(forms);
-  const groupsQ = getAttrQ(groups);
-  const habitatsQ = getAttrQ(habitats);
-  const petalsQ = getAttrQ(petals);
+  const attrNames = Object.keys(newQuery);
 
-  const hasLeafType = (plant: PlantObject): boolean => checkHasAttr(plant, 'lf_type', leafTypesQ);
-  const hasLeafShape = (plant: PlantObject): boolean =>
-    checkHasAttr(plant, 'lf_shape', leafShapesQ);
-  const hasLeafArrangement = (plant: PlantObject): boolean =>
-    checkHasAttr(plant, 'lf_arngmt', arrangementsQ);
-  const hasForm = (plant: PlantObject): boolean => checkHasAttr(plant, 'form', formsQ);
-  const hasLeafGroup = (plant: PlantObject): boolean => checkHasAttr(plant, 'lf_group', groupsQ);
-  const hasHabitat = (plant: PlantObject): boolean => checkHasAttr(plant, 'habitat', habitatsQ);
-  const hasPetals = (plant: PlantObject): boolean => checkHasAttr(plant, 'petals', petalsQ);
+  const attrQs = Object.entries(newQuery).map(attr => getAttrQ(attr[1]));
 
-  return plantData.filter(
-    plant =>
-      hasLeafType(plant) &&
-      hasLeafShape(plant) &&
-      hasLeafArrangement(plant) &&
-      hasForm(plant) &&
-      hasLeafGroup(plant) &&
-      hasHabitat(plant) &&
-      hasPetals(plant)
+  const hasAttrs = attrQs.map((attrQ, i) => (plant: PlantObject): boolean =>
+    checkHasAttr(plant, attrNames[i], attrQ)
   );
+
+  return plantData.filter(plant => {
+    let result = true;
+    hasAttrs.forEach(hasAttr => (!hasAttr(plant) ? (result = false) : undefined));
+    return result;
+  });
 };
 
 export default filterResults;

@@ -23,88 +23,29 @@ const SearchContainer = styled.div`
 const SearchContent = inject('plantStore')(
   observer(({ plantStore, show }) => {
     const { searchQuery, handleQueryChange } = plantStore;
-    const { leafTypes, shapes, forms, arrangements, habitats, groups, petals } = searchQuery;
-    const {
-      leafArrangementItems,
-      leafShapeItems,
-      leafTypeItems,
-      plantFormItems,
-      leafGroupItems,
-      plantHabitatItems,
-      plantPetalsItems
-    } = attributeItems;
+
+    const attrItems = Object.entries(attributeItems);
+
+    const renderSearchAttribute = (attr: [string, *]) => {
+      const attrName = attr[0];
+      const { items, title } = (attr[1]: any);
+      return (
+        <SearchAttribute key={title} title={title}>
+          {items.map(item => (
+            <FormItem
+              key={item.name}
+              checked={searchQuery[attrName][item.name]}
+              item={item}
+              onSearchChange={handleQueryChange(attrName)}
+            />
+          ))}
+        </SearchAttribute>
+      );
+    };
+
     return (
       <SearchContainer show={show}>
-        <SearchAttribute title="Leaf Arrangement">
-          {leafArrangementItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={arrangements}
-              item={item}
-              onSearchChange={handleQueryChange('arrangement')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Leaf Shape">
-          {leafShapeItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={shapes}
-              item={item}
-              onSearchChange={handleQueryChange('shape')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Leaf Type">
-          {leafTypeItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={leafTypes}
-              item={item}
-              onSearchChange={handleQueryChange('leafType')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Form">
-          {plantFormItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={forms}
-              item={item}
-              onSearchChange={handleQueryChange('form')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Leaf Group">
-          {leafGroupItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={groups}
-              item={item}
-              onSearchChange={handleQueryChange('group')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Habitat">
-          {plantHabitatItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={habitats}
-              item={item}
-              onSearchChange={handleQueryChange('habitat')}
-            />
-          ))}
-        </SearchAttribute>
-        <SearchAttribute title="Petals">
-          {plantPetalsItems.map(item => (
-            <FormItem
-              key={item.name}
-              attribute={petals}
-              item={item}
-              onSearchChange={handleQueryChange('petals')}
-            />
-          ))}
-        </SearchAttribute>
+        {attrItems.map(attr => renderSearchAttribute(attr))}
       </SearchContainer>
     );
   })
