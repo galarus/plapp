@@ -27,7 +27,7 @@ const ListHeaderContainer = styled.div`
 
 type ItemProps = {
   title: string,
-  toggleFunction: string => *
+  toggleFunction: (*) => *
 };
 
 const ListHeaderItem = (props: ItemProps) => {

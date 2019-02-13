@@ -3,6 +3,8 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 import FormTitle from './Form/FormTitle';
 
 const FormContent = styled.div`
@@ -20,27 +22,22 @@ type Props = {
   title: string,
   children: *
 };
-type State = {
-  show: boolean
-};
 
-class SearchAttribute extends React.Component<Props, State> {
-  state = { show: false };
+@observer
+class SearchAttribute extends React.Component<Props, *> {
+  @observable show: boolean = false;
 
   toggleShow = () => {
-    this.setState(prevState => ({
-      show: !prevState.show
-    }));
+    this.show = !this.show;
   };
 
   render() {
     const { title, children } = this.props;
-    const { show } = this.state;
     return (
       <div>
-        <FormTitle onClick={this.toggleShow}>{show ? `${title} -` : `${title} +`}</FormTitle>
+        <FormTitle onClick={this.toggleShow}>{this.show ? `${title} -` : `${title} +`}</FormTitle>
 
-        <FormContent show={show}>{children}</FormContent>
+        <FormContent show={this.show}>{children}</FormContent>
       </div>
     );
   }

@@ -2,6 +2,8 @@
 import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 import styled from '@emotion/styled';
 import AboutBtn from './AboutBtn';
 
@@ -29,28 +31,21 @@ const AboutClose = styled.span({
   }
 });
 
-type Props = *;
-type State = {
-  show: boolean
-};
-class AboutContent extends React.Component<Props, State> {
-  state = {
-    show: true
-  };
+@observer
+class AboutContent extends React.Component<*, *> {
+  @observable show: boolean = true;
 
   toggleShowAbout = () => {
-    const { show } = this.state;
-    this.setState({ show: !show });
+    this.show = !this.show;
   };
   // sort list only if direction has changed
 
   render() {
-    const { show } = this.state;
     return (
       <div style={{ postion: 'relative' }}>
         <AboutBtn toggleShowAbout={this.toggleShowAbout} />
         <div>
-          {show && (
+          {this.show && (
             <AboutContainer>
               <div style={{ opacity: '1' }}>
                 <AboutClose

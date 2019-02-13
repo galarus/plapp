@@ -3,6 +3,7 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
 import PlantItemModal from './PlantItemModal/PlantItemModal';
@@ -22,43 +23,38 @@ type Props = {
   show: boolean,
   plantStore?: PlantStore
 };
-type State = {
-  sortAttr: string,
-  sortDir: number,
-  viewing: boolean,
-  viewingPlant: ?PlantObject
-};
 
 @inject('plantStore')
 @observer
-class PlantList extends React.Component<Props, State> {
-  state = {
-    sortAttr: 'plant_genus',
-    sortDir: 0,
-    viewing: true,
-    viewingPlant: null
-  };
+class PlantList extends React.Component<Props, *> {
+  @observable sortAttr: string = 'plant_genus';
+
+  @observable sortDir: number = 0;
+
+  @observable viewing: boolean = true;
+
+  @observable viewingPlant: ?PlantObject = null;
 
   openViewModal = (plant: PlantObject) => (e: Event) => {
     e.stopPropagation();
-    this.setState({ viewing: true, viewingPlant: plant });
+    this.viewing = true;
+    this.viewingPlant = plant;
   };
 
   closeViewModal = (e: Event) => {
     e.stopPropagation();
-    this.setState({ viewing: false });
+    this.viewing = false;
   };
 
   // sort list only if direction has changed
   sortList = (): Array<PlantObject> => {
-    const { sortAttr, sortDir } = this.state;
     const { searchResults } = this.props;
     const plants = searchResults;
-    if (sortDir === 1) {
-      return plants.sort((a, b) => a[sortAttr].toString().localeCompare(b[sortAttr]));
+    if (this.sortDir === 1) {
+      return plants.sort((a, b) => a[this.sortAttr].toString().localeCompare(b[this.sortAttr]));
     }
-    if (sortDir === -1) {
-      return plants.sort((a, b) => b[sortAttr].toString().localeCompare(a[sortAttr]));
+    if (this.sortDir === -1) {
+      return plants.sort((a, b) => b[this.sortAttr].toString().localeCompare(a[this.sortAttr]));
     }
     return plants;
   };
@@ -74,19 +70,16 @@ class PlantList extends React.Component<Props, State> {
 
   toggleTraitSort = (attr: string) => (e: Event) => {
     e.stopPropagation();
-    const { sortAttr, sortDir } = this.state;
-    const newDirection = sortDir === 0 || sortDir === -1 || sortAttr !== attr ? 1 : -1;
-    console.log(`calling toggle sort from ${sortDir} to ${newDirection}`);
-    this.setState({
-      sortAttr: attr,
-      sortDir: newDirection
-    });
+    const newDirection =
+      this.sortDir === 0 || this.sortDir === -1 || this.sortAttr !== attr ? 1 : -1;
+    console.log(`calling toggle sort from ${this.sortDir} to ${newDirection}`);
+    this.sortAttr = attr;
+    this.sortDir = newDirection;
   };
 
   render() {
-    const { viewing, viewingPlant } = this.state;
     const plants = this.sortList();
-    const { attrNames, attrTitles } = this.props.plantStore;
+    const { attrNames, attrTitles } = (this.props.plantStore: any);
     return (
       <PlantListContainer show={this.props.show}>
         <PlantListHeader
@@ -102,8 +95,12 @@ class PlantList extends React.Component<Props, State> {
         >
           {plants.map(plant => this.renderItem(plant, attrNames))}
         </div>
-        {viewingPlant && (
-          <PlantItemModal show={viewing} plant={viewingPlant} onClose={this.closeViewModal} />
+        {this.viewingPlant && (
+          <PlantItemModal
+            show={this.viewing}
+            plant={this.viewingPlant}
+            onClose={this.closeViewModal}
+          />
         )}
       </PlantListContainer>
     );

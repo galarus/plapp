@@ -3,7 +3,6 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import type { PlantObject } from '../../Store/plant_data';
-import attributeItems from '../../Store/AttributeItems';
 
 const ListItemContainer = styled.div`
   display: flex;
