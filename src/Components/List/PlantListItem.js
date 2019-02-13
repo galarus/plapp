@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import type { PlantObject } from '../../Store/plant_data';
+import attributeItems from '../../Store/AttributeItems';
 
 const ListItemContainer = styled.div`
   display: flex;
@@ -36,22 +37,19 @@ const ListItemContainer = styled.div`
 
 type Props = {
   viewFunction: *,
-  plant: PlantObject
+  plant: PlantObject,
+  attrNames: Array<string>
 };
 
 const PlantListItem = (props: Props) => {
-  const { viewFunction, plant } = props;
+  const { viewFunction, plant, attrNames } = props;
+  const renderPlantCell = attrName => <div>{plant[attrName]}</div>;
 
   return (
     <ListItemContainer role="button" tabIndex="0" onKeyDown={viewFunction} onClick={viewFunction}>
       <div>{`${plant.plant_genus} ${plant.plant_species}`}</div>
-      <div>{plant.lf_shape}</div>
-      <div>{plant.lf_arngmt}</div>
-      <div>{plant.form}</div>
-      <div>{plant.lf_type}</div>
-      <div>{plant.lf_group}</div>
-      <div>{plant.habitat}</div>
-      <div>{plant.petals}</div>
+
+      {attrNames.map(attrName => renderPlantCell(attrName))}
     </ListItemContainer>
   );
 };

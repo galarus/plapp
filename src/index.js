@@ -9,7 +9,7 @@ import { Provider } from 'mobx-react';
 // import DevTools from 'mobx-react-devtools';
 import PlantStore from './Store/PlantStore';
 import attributeItems from './Store/AttributeItems';
-
+import plantData from './Store/plant_data';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'typeface-roboto';
@@ -32,7 +32,7 @@ const theme = {
 };
 
 const ThemedApp = () => (
-  <Provider plantStore={new PlantStore(attributeItems)}>
+  <Provider plantStore={new PlantStore(plantData, attributeItems)}>
     <ThemeProvider theme={theme}>
       <Global
         styles={css`

@@ -40,21 +40,23 @@ const ListHeaderItem = (props: ItemProps) => {
 };
 
 type HeaderProps = {
-  sortFunction: *
+  sortFunction: *,
+  attrNames: Array<string>,
+  attrTitles: Array<string>
 };
 
 const PlantListHeader = (props: HeaderProps) => {
-  const { sortFunction } = props;
+  const { sortFunction, attrNames, attrTitles } = props;
   return (
     <ListHeaderContainer>
       <ListHeaderItem title="genus species" toggleFunction={sortFunction('plant_genus')} />
-      <ListHeaderItem title="leaf shape" toggleFunction={sortFunction('lf_shape')} />
-      <ListHeaderItem title="leaf arrangement" toggleFunction={sortFunction('lf_arngmt')} />
-      <ListHeaderItem title="leaf form" toggleFunction={sortFunction('form')} />
-      <ListHeaderItem title="leaf type" toggleFunction={sortFunction('lf_type')} />
-      <ListHeaderItem title="leaf group" toggleFunction={sortFunction('lf_group')} />
-      <ListHeaderItem title="habitat" toggleFunction={sortFunction('habitat')} />
-      <ListHeaderItem title="petals" toggleFunction={sortFunction('petals')} />
+      {attrNames.map((name, i) => (
+        <ListHeaderItem
+          key={name}
+          title={attrTitles[i].toLowerCase()}
+          toggleFunction={sortFunction(name)}
+        />
+      ))}
     </ListHeaderContainer>
   );
 };

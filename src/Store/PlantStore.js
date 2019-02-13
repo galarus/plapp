@@ -1,10 +1,7 @@
 // @flow
 import { observable, computed, action } from 'mobx';
-
-import plantData from './plant_data';
-import filterResults from './SearchUtils';
+import Util from './PlantUtils';
 import type { PlantObject } from './plant_data';
-
 import type { AttributeItems } from './AttributeItems';
 
 type SearchQuery = {
@@ -14,25 +11,38 @@ type SearchQuery = {
 };
 
 class PlantStore {
-  constructor(attributes: AttributeItems) {
+  util = {};
+
+  constructor(plantData: Array<PlantObject>, attributes: AttributeItems) {
     // set up search query
-    this.searchQuery = {};
-    const mapItemToQuery = (attr, itemName) => {
-      this.searchQuery[attr][itemName] = false;
-    };
-    const getItemsOfAttr = attr => {
-      this.searchQuery[attr] = {};
-      attributes[attr].items.map(item => mapItemToQuery(attr, item.name));
-    };
-    Object.keys(attributes).map(attr => getItemsOfAttr(attr));
+    this.util = new Util();
+    this.plantData = plantData;
+    this.attributeItems = attributes;
+    this.searchQuery = this.util.createSearchQuery(attributes);
   }
 
-  @observable searching: boolean = true;
+  @observable plantData: Array<PlantObject>;
+
+  @observable attributeItems: AttributeItems;
 
   @observable searchQuery: SearchQuery;
 
+  @observable searching: boolean = true;
+
+  @computed get attrItemsArray(): Array<any> {
+    return Object.entries(this.attributeItems);
+  }
+
+  @computed get attrNames(): Array<string> {
+    return this.attrItemsArray.map(item => item[0]);
+  }
+
+  @computed get attrTitles(): Array<string> {
+    return this.attrItemsArray.map(item => item[1].title);
+  }
+
   @computed get searchResults(): Array<PlantObject> {
-    return filterResults(this.searchQuery, plantData);
+    return this.util.filterResults(this.searchQuery, this.plantData);
   }
 
   @action.bound
@@ -45,7 +55,6 @@ class PlantStore {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-
     this.searchQuery[trait] = { ...this.searchQuery[trait], [name]: value };
   };
 }

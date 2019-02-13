@@ -3,10 +3,13 @@ import * as React from 'react';
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { observer, inject } from 'mobx-react';
+
 import PlantItemModal from './PlantItemModal/PlantItemModal';
 import type { PlantObject } from '../../Store/plant_data';
 import PlantListItem from './PlantListItem';
 import PlantListHeader from './PlantListHeader';
+import type PlantStore from '../../Store/PlantStore';
 
 const PlantListContainer = styled.div`
   height: 67vh;
@@ -16,7 +19,8 @@ const PlantListContainer = styled.div`
 
 type Props = {
   searchResults: Array<PlantObject>,
-  show: boolean
+  show: boolean,
+  plantStore?: PlantStore
 };
 type State = {
   sortAttr: string,
@@ -24,6 +28,9 @@ type State = {
   viewing: boolean,
   viewingPlant: ?PlantObject
 };
+
+@inject('plantStore')
+@observer
 class PlantList extends React.Component<Props, State> {
   state = {
     sortAttr: 'plant_genus',
@@ -56,11 +63,12 @@ class PlantList extends React.Component<Props, State> {
     return plants;
   };
 
-  renderItem = (plant: PlantObject) => (
+  renderItem = (plant: PlantObject, attrNames: Array<string>) => (
     <PlantListItem
       key={plant.jepson_code.toString()}
       viewFunction={this.openViewModal(plant)}
       plant={plant}
+      attrNames={attrNames}
     />
   );
 
@@ -78,17 +86,21 @@ class PlantList extends React.Component<Props, State> {
   render() {
     const { viewing, viewingPlant } = this.state;
     const plants = this.sortList();
-
+    const { attrNames, attrTitles } = this.props.plantStore;
     return (
       <PlantListContainer show={this.props.show}>
-        <PlantListHeader sortFunction={this.toggleTraitSort} />
+        <PlantListHeader
+          sortFunction={this.toggleTraitSort}
+          attrNames={attrNames}
+          attrTitles={attrTitles}
+        />
         <div
           style={{
             backgroundColor: 'blue-gray',
             fontFamily: 'Roboto'
           }}
         >
-          {plants.map(plant => this.renderItem(plant))}
+          {plants.map(plant => this.renderItem(plant, attrNames))}
         </div>
         {viewingPlant && (
           <PlantItemModal show={viewing} plant={viewingPlant} onClose={this.closeViewModal} />

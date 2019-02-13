@@ -7,8 +7,6 @@ import { observer, inject } from 'mobx-react';
 import SearchAttribute from './SearchAttribute/SearchAttribute';
 import FormItem from './SearchAttribute/Form/FormItem';
 
-import attributeItems from '../../Store/AttributeItems';
-
 const SearchContainer = styled.div`
   text-align: left;
   margin-left: 0em;
@@ -22,9 +20,7 @@ const SearchContainer = styled.div`
 
 const SearchContent = inject('plantStore')(
   observer(({ plantStore, show }) => {
-    const { searchQuery, handleQueryChange } = plantStore;
-
-    const attrItems = Object.entries(attributeItems);
+    const { searchQuery, handleQueryChange, attrItemsArray } = plantStore;
 
     const renderSearchAttribute = (attr: [string, *]) => {
       const attrName = attr[0];
@@ -45,7 +41,7 @@ const SearchContent = inject('plantStore')(
 
     return (
       <SearchContainer show={show}>
-        {attrItems.map(attr => renderSearchAttribute(attr))}
+        {attrItemsArray.map(attr => renderSearchAttribute(attr))}
       </SearchContainer>
     );
   })

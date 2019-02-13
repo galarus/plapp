@@ -152,7 +152,7 @@ const attributeItems: AttributeItems = {
     ]
   },
   lf_group: {
-    title: 'Group',
+    title: 'Leaf Group',
     items: [
       {
         name: 'simple',
